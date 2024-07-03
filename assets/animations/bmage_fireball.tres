@@ -1,0 +1,31 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://b1c0msd1h0jat"]
+
+[ext_resource type="Texture2D" uid="uid://dnkov0367tw2a" path="res://assets/fireball_1.png" id="1_nvrha"]
+[ext_resource type="Texture2D" uid="uid://cipoxno8w40m7" path="res://assets/fireball_2.png" id="2_4av4b"]
+[ext_resource type="Texture2D" uid="uid://c1aiqrlp36ruc" path="res://assets/fireball_3.png" id="3_74i1c"]
+[ext_resource type="Texture2D" uid="uid://2qrxhve6ushw" path="res://assets/fireball_4.png" id="4_wtwgd"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nvrha")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_4av4b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_74i1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wtwgd")
+}],
+"loop": true,
+"name": &"fireball",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]

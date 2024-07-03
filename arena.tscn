@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://b2pgalkm1uevl"]
+
+[ext_resource type="Script" path="res://arena.gd" id="1_2nt1r"]
+[ext_resource type="Texture2D" uid="uid://dsssofrj02ihr" path="res://assets/Game Boy Advance - Dragon Ball Z The Legacy of Goku II - Cell Games Arena.png" id="1_w4fxw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tyiyi"]
+size = Vector2(20, 430)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jjli"]
+size = Vector2(437.5, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tt0qg"]
+size = Vector2(20, 439.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v0vb4"]
+size = Vector2(438.5, 20)
+
+[node name="Arena" type="StaticBody2D"]
+script = ExtResource("1_2nt1r")
+
+[node name="arena_sprite" type="Sprite2D" parent="."]
+position = Vector2(573.125, 332.21)
+scale = Vector2(1.64104, 1.64104)
+texture = ExtResource("1_w4fxw")
+
+[node name="ArenaCollisionLeft" type="CollisionShape2D" parent="."]
+position = Vector2(350, 380)
+shape = SubResource("RectangleShape2D_tyiyi")
+
+[node name="ArenaCollisionBottom" type="CollisionShape2D" parent="."]
+position = Vector2(563, 595)
+shape = SubResource("RectangleShape2D_7jjli")
+
+[node name="ArenaCollisionRight" type="CollisionShape2D" parent="."]
+position = Vector2(792, 384.75)
+shape = SubResource("RectangleShape2D_tt0qg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(570, 154)
+shape = SubResource("RectangleShape2D_v0vb4")

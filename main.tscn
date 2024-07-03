@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://bm2erb45ptmj5"]
+
+[ext_resource type="PackedScene" uid="uid://b2pgalkm1uevl" path="res://arena.tscn" id="1_o8sir"]
+[ext_resource type="Script" path="res://main.gd" id="1_v5b6b"]
+[ext_resource type="PackedScene" uid="uid://nmmeg3d72svs" path="res://bmage.tscn" id="2_vwoga"]
+[ext_resource type="PackedScene" uid="uid://bqmk6xo0vu5r" path="res://hud.tscn" id="3_a55rb"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_v5b6b")
+
+[node name="Arena" parent="." instance=ExtResource("1_o8sir")]
+
+[node name="Bmage" parent="." instance=ExtResource("2_vwoga")]
+position = Vector2(342, 469)
+
+[node name="HUD" parent="." instance=ExtResource("3_a55rb")]

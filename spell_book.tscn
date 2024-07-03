@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://7551sn1rqmfk"]
+
+[ext_resource type="Texture2D" uid="uid://c5p76m2uncql5" path="res://assets/arcana_book.png" id="1_h3ntd"]
+[ext_resource type="Script" path="res://spell_book.gd" id="1_udkx0"]
+[ext_resource type="PackedScene" uid="uid://io0mf4y864i1" path="res://assets/animations/fireball.tscn" id="3_bx2yq"]
+
+[node name="SpellBook" type="Sprite2D"]
+position = Vector2(166, 135)
+scale = Vector2(1.47217, 1.47217)
+texture = ExtResource("1_h3ntd")
+script = ExtResource("1_udkx0")
+
+[node name="Fireball" parent="." instance=ExtResource("3_bx2yq")]
+visible = false
+scale = Vector2(1.53755, 1.55)

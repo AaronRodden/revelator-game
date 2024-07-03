@@ -1,0 +1,78 @@
+[gd_scene load_steps=12 format=3 uid="uid://nmmeg3d72svs"]
+
+[ext_resource type="Texture2D" uid="uid://nsgstlrq3pfp" path="res://assets/Browser Games - Super Mario Bros Crossover - Fighter Thief Black Mage and White Mage.png" id="1_fcncq"]
+[ext_resource type="Script" path="res://bmage.gd" id="1_nld2k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sd4oi"]
+size = Vector2(29, 38.9063)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lkxlj"]
+atlas = ExtResource("1_fcncq")
+region = Rect2(49, 196, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxfmr"]
+atlas = ExtResource("1_fcncq")
+region = Rect2(96, 196, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhgi3"]
+atlas = ExtResource("1_fcncq")
+region = Rect2(143, 196, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_awh1q"]
+atlas = ExtResource("1_fcncq")
+region = Rect2(190, 196, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mwhgd"]
+atlas = ExtResource("1_fcncq")
+region = Rect2(237, 196, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68tc3"]
+atlas = ExtResource("1_fcncq")
+region = Rect2(284, 196, 44, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00nfi"]
+atlas = ExtResource("1_fcncq")
+region = Rect2(331, 196, 44, 44)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_laqup"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lkxlj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxfmr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhgi3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_awh1q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mwhgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68tc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00nfi")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Bmage" type="CharacterBody2D"]
+script = ExtResource("1_nld2k")
+speed = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(55.5, 80.4531)
+shape = SubResource("RectangleShape2D_sd4oi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(57, 69)
+scale = Vector2(1.43333, 1.43333)
+sprite_frames = SubResource("SpriteFrames_laqup")
+animation = &"walk"

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://dssrjn8vdt51k"]
+
+[ext_resource type="Texture2D" uid="uid://bfwmtkx2pk43" path="res://icon.svg" id="1_gfdlo"]
+[ext_resource type="Script" path="res://spell_input_ui.gd" id="1_sqgpe"]
+
+[node name="SpellInputUI" type="Sprite2D"]
+position = Vector2(83, 99)
+texture = ExtResource("1_gfdlo")
+script = ExtResource("1_sqgpe")
