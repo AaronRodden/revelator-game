@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqmk6xo0vu5r"]
+[gd_scene load_steps=18 format=3 uid="uid://bqmk6xo0vu5r"]
 
 [ext_resource type="Texture2D" uid="uid://b27fsnydq1xdi" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_dpad_right.svg" id="1_mvk6c"]
 [ext_resource type="Script" path="res://hud.gd" id="1_pj8pv"]
@@ -9,6 +9,14 @@
 [ext_resource type="Texture2D" uid="uid://cxu8tuf1uvxow" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_button_color_circle.svg" id="6_2oava"]
 [ext_resource type="Texture2D" uid="uid://paipibhqigla" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_button_color_triangle.svg" id="7_ey71d"]
 [ext_resource type="Texture2D" uid="uid://do4vbct1v4gym" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_button_color_square.svg" id="8_ta72m"]
+[ext_resource type="Texture2D" uid="uid://d1cirdoqx13vv" path="res://assets/Switch Button Icons and Controls/Buttons Full Solid/White/SVG/X.svg" id="10_yxpha"]
+[ext_resource type="Texture2D" uid="uid://cpglgjfice3iw" path="res://assets/Switch Button Icons and Controls/Buttons Full Solid/White/SVG/Y.svg" id="11_xv7bu"]
+[ext_resource type="Texture2D" uid="uid://dm2luxndulpl2" path="res://assets/Switch Button Icons and Controls/Buttons Full Solid/White/SVG/A.svg" id="12_h6aau"]
+[ext_resource type="Texture2D" uid="uid://d2873xn7rf5ss" path="res://assets/Switch Button Icons and Controls/Buttons Full Solid/White/SVG/B.svg" id="13_r3ir7"]
+[ext_resource type="Texture2D" uid="uid://d4lipt3kc3v01" path="res://assets/Switch Button Icons and Controls/Buttons Full Solid/White/SVG/Pro D-Pad Down.svg" id="14_xr7r4"]
+[ext_resource type="Texture2D" uid="uid://c3bly0g8b058s" path="res://assets/Switch Button Icons and Controls/Buttons Full Solid/White/SVG/Pro D-Pad Left.svg" id="15_q13fe"]
+[ext_resource type="Texture2D" uid="uid://nqp5jnuajqkd" path="res://assets/Switch Button Icons and Controls/Buttons Full Solid/White/SVG/Pro D-Pad Right.svg" id="16_v0iy5"]
+[ext_resource type="Texture2D" uid="uid://kcrxwpqk06st" path="res://assets/Switch Button Icons and Controls/Buttons Full Solid/White/SVG/Pro D-Pad Up.svg" id="17_t6l0o"]
 
 [node name="HUD" type="Node"]
 script = ExtResource("1_pj8pv")
@@ -56,3 +64,60 @@ texture = ExtResource("8_ta72m")
 
 [node name="SpellInputUI" parent="." instance=ExtResource("2_w1ksp")]
 position = Vector2(88, 98)
+
+[node name="X" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(867, 578)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("10_yxpha")
+
+[node name="Y" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(867, 578)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("11_xv7bu")
+
+[node name="A" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(867, 578)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("12_h6aau")
+
+[node name="B" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(867, 578)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("13_r3ir7")
+
+[node name="ProD-padDown" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(867, 578)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("14_xr7r4")
+
+[node name="ProD-padLeft" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(867, 578)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("15_q13fe")
+
+[node name="ProD-padRight" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(867, 578)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("16_v0iy5")
+
+[node name="ProD-padUp" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(867, 578)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("17_t6l0o")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 440.0
+offset_top = 288.0
+offset_right = 665.0
+offset_bottom = 368.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Press Start"

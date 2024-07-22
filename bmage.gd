@@ -15,7 +15,10 @@ var lookvector = Vector2.ZERO
 var input_buffer = []
 
 var bmage_moves = {
-	"fireball": ["down", "right", "square"], 
+	"light_fireball": ["down", "right", "square"], 
+	"medium_fireball": ["down", "right", "triangle"], 
+	"heavy_fireball": ["down", "right", "cross"], 
+	"special_move": ["right", "down", "right", "circle"], 
 	"ice_punch": ["right", "down", "right", "square"]
 	}
 
@@ -68,7 +71,7 @@ func _process(delta):
 	
 	# Player aiming
 	lookvector.x = (Input.get_action_strength("right_aim") - Input.get_action_strength("left_aim"))
-	lookvector.y = (Input.get_action_strength("down_aim") - Input.get_action_strength("up_aim"))
+	lookvector.y = (Input.get_action_strength("down_aim") - Input.	get_action_strength("up_aim"))
 	$SpellBook.position = aim_arrow_position + lookvector * 20
 	
 	# TODO: How can I make this spell origin more modular
@@ -76,7 +79,7 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("shoot_spell"):
 		emit_signal("spell_cast")
-		$SpellBook.cast_spell(lookvector)
+		$SpellBook.cast_spell(lookvector, self.name)
 		input_buffer = []
 		
 	
@@ -100,9 +103,9 @@ func _process(delta):
 	if Input.is_action_just_released("circle"):
 		input_buffer.push_back("circle")
 		emit_signal("spell_input", "circle")
-	if Input.is_action_just_released("x"):
-		input_buffer.push_back("x")
-		emit_signal("spell_input", "x")
+	if Input.is_action_just_released("cross"):
+		input_buffer.push_back("cross")
+		emit_signal("spell_input", "cross")
 	if Input.is_action_just_released("square"):
 		input_buffer.push_back("square")
 		emit_signal("spell_input", "square")
@@ -110,24 +113,29 @@ func _process(delta):
 	# TODO: Figure out mechanics for input reader
 	for move in bmage_moves:
 		if bmage_moves[move] == input_buffer: 
-			print(move)
 			input_buffer = []
 			emit_signal("spell_completed")
-			# TODO: Variable spell loading
-			$SpellBook.new_spell("fireball")
+			$SpellBook.new_spell(move, self.name)
 	
 func start(pos):
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
+	$CollisionShape2D.set_deferred("disabled", false)
+	$Hurtbox.get_child(0).set_deferred("disabled", false)
 
 func _physics_process(delta):
 	move_and_collide(Vector2(0, 0)) # Move down 1 pixel per physics frame
 
 # TODO: Will need to make different hit/hurt box interactions for stage and for attacks
-func _on_body_entered(body):
-	print("body entered!")
-	hit.emit()
+#func _on_body_entered(body):
+	#print("body entered!")
+	#hit.emit()
 
-
-
+func _on_hurtbox_area_entered(area):
+	if area.caster != self.name and area.caster != null:
+		print("Something hit me! - bmage")
+		hide()  # Player disappears after being hit.
+		hit.emit()
+		$CollisionShape2D.set_deferred("disabled", true)
+		$Hurtbox.get_child(0).set_deferred("disabled", true)

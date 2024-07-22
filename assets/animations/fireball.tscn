@@ -8,13 +8,12 @@ size = Vector2(28.3871, 20)
 
 [node name="Fireball" type="Area2D"]
 scale = Vector2(5.10395, 4.1936)
+collision_mask = 2
 script = ExtResource("1_o6pb0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1, 1)
 texture = ExtResource("1_lv6en")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.709675, 0)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_34ru1")

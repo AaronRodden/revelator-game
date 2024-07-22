@@ -1,5 +1,7 @@
 extends Node
 
+signal start_game
+
 var screen_size
 var input_display = []
 var curr_offset = 0.0
@@ -13,7 +15,11 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	
+	# TODO: Control various game systems to go on and off
+	if Input.is_action_just_released("start"):
+		_on_start_game()
+		start_game.emit()
 
 
 func spell_display(input):
@@ -29,3 +35,8 @@ func clear_spell_inputs():
 		ui_input.queue_free()
 	input_display = []  # Clear input display
 	curr_offset = 0.0
+
+
+func _on_start_game():
+	$Button.pressed
+	$Button.visible = false

@@ -16,6 +16,8 @@ size = Vector2(20, 439.5)
 size = Vector2(438.5, 20)
 
 [node name="Arena" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_2nt1r")
 
 [node name="arena_sprite" type="Sprite2D" parent="."]

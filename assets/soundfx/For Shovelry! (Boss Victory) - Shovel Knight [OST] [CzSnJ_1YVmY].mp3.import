@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bve4tny10wumn"
+path="res://.godot/imported/For Shovelry! (Boss Victory) - Shovel Knight [OST] [CzSnJ_1YVmY].mp3-3244f1a8fd0dfb4ba737ed5834690602.mp3str"
+
+[deps]
+
+source_file="res://assets/soundfx/For Shovelry! (Boss Victory) - Shovel Knight [OST] [CzSnJ_1YVmY].mp3"
+dest_files=["res://.godot/imported/For Shovelry! (Boss Victory) - Shovel Knight [OST] [CzSnJ_1YVmY].mp3-3244f1a8fd0dfb4ba737ed5834690602.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -3,11 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://nsgstlrq3pfp" path="res://assets/Browser Games - Super Mario Bros Crossover - Fighter Thief Black Mage and White Mage.png" id="1_fcncq"]
 [ext_resource type="Script" path="res://bmage.gd" id="1_nld2k"]
 [ext_resource type="Texture2D" uid="uid://cux32pxubuics" path="res://assets/Game Boy GBC - Dance Dance Revolution GB Disney Mix JPN - Arrows.png" id="3_ml6p7"]
-[ext_resource type="SpriteFrames" uid="uid://b1c0msd1h0jat" path="res://assets/animations/bmage_fireball.tres" id="4_kandk"]
 [ext_resource type="PackedScene" uid="uid://7551sn1rqmfk" path="res://spell_book.tscn" id="8_hogf4"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sd4oi"]
-size = Vector2(29, 38.9063)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pl16x"]
+size = Vector2(28, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lkxlj"]
 atlas = ExtResource("1_fcncq")
@@ -186,12 +185,17 @@ animations = [{
 "speed": 15.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5hco"]
+size = Vector2(25, 37)
+
 [node name="Bmage" type="CharacterBody2D"]
+visible = false
+collision_mask = 5
 script = ExtResource("1_nld2k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(55.5, 80.4531)
-shape = SubResource("RectangleShape2D_sd4oi")
+position = Vector2(56, 81)
+shape = SubResource("RectangleShape2D_pl16x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(57, 69)
@@ -207,14 +211,14 @@ sprite_frames = SubResource("SpriteFrames_hs67o")
 frame = 3
 frame_progress = 0.0769816
 
-[node name="Fireball" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(99, 80)
-sprite_frames = ExtResource("4_kandk")
-animation = &"fireball"
-frame = 1
-frame_progress = 0.95392
-
 [node name="SpellBook" parent="." instance=ExtResource("8_hogf4")]
 position = Vector2(57, 83)
 scale = Vector2(0.183962, 0.183962)
+
+[node name="Hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(56, 81)
+shape = SubResource("RectangleShape2D_i5hco")
+
+[connection signal="area_entered" from="Hurtbox" to="." method="_on_hurtbox_area_entered"]
