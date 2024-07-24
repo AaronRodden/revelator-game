@@ -7,6 +7,12 @@ var rng = RandomNumberGenerator.new()
 
 var BMAGE_START_POS = Vector2(343, 457)
 var WMAGE_START_POS = Vector2(684, 121)
+var ROUND_WINS_MAX = 3
+
+var p1_score = 0
+var p2_score = 0
+
+## **TODO** Add an input manager / controller organizer. This could be a stretch goal.
 
 func get_all_songs():
 	var dir = DirAccess.open(MUSIC_PATH)
@@ -29,32 +35,76 @@ func _ready():
 	
 	$Bmage.connect("spell_input", $HUD.spell_display, 0)
 	$Bmage.connect("spell_cast", $HUD.clear_spell_inputs, 0)
-	$Bmage.hit.connect(victory)
+	$Bmage.hit.connect(wmage_round_win)
 	
 	$Wmage.connect("spell_input", $HUD.spell_display, 0)
 	$Wmage.connect("spell_cast", $HUD.clear_spell_inputs, 0)
-	$Wmage.hit.connect(victory)
+	$Wmage.hit.connect(bmage_round_win)
 	
-	# TODO: connect button here to new_game
 	$HUD.start_game.connect(new_game)
+	
+func new_round():
+	$Bmage.controller_lock = true
+	$Wmage.controller_lock = true
+	
+	# Remove all existing fireballs 
+	for N in self.get_children():
+		if N.name.contains("Area2D"):
+			N.queue_free()
+	
+	$Bmage.start(BMAGE_START_POS)
+	$Wmage.start(WMAGE_START_POS)
+	
+	for i in range(3, -1, -1):
+		$HUD.round_countdown(i)
+		if i > 0:
+			await get_tree().create_timer(1).timeout
+	
+	$Bmage.controller_lock = false
+	$Wmage.controller_lock = false
 	
 func new_game():
 	current_song = null # new song
 	start_music()
-	$Bmage.start(BMAGE_START_POS)
-	$Wmage.start(WMAGE_START_POS)
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
+	new_round()
+	
+## Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+	#pass
+	
 func _on_joy_connection_changed(device_id, connected):
 	if connected:
 		print(Input.get_joy_name(device_id))
 	else:
 		print("Keyboard")
 
-func victory():
+func bmage_round_win():
+	p1_score += 1
+	$HUD.round_win(0)
+	
+	if p1_score == ROUND_WINS_MAX:
+		victory(0)
+		$HUD.victory(0)
+	
+	await get_tree().create_timer(2).timeout
+	new_round()
+	
+func wmage_round_win():
+	p2_score += 1
+	$HUD.round_win(1)
+	
+	if p2_score == ROUND_WINS_MAX:
+		victory(1)
+		$HUD.victory(1)
+
+	await get_tree().create_timer(2).timeout
+	start_round()
+
+func start_round():
+	$Bmage.start(BMAGE_START_POS)
+	$Wmage.start(WMAGE_START_POS)
+
+func victory(player):
 	$MainMusic.stop()
 	$VictoryTheme.play()
 

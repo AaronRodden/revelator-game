@@ -133,22 +133,22 @@ right_move_p2={
 ]
 }
 down_aim_p2={
-"deadzone": 0.1,
+"deadzone": 0.0,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":3,"axis_value":1.0,"script":null)
 ]
 }
 up_aim_p2={
-"deadzone": 0.1,
+"deadzone": 0.0,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":3,"axis_value":-1.0,"script":null)
 ]
 }
 left_aim_p2={
-"deadzone": 0.1,
+"deadzone": 0.0,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":2,"axis_value":-1.0,"script":null)
 ]
 }
 right_aim_p2={
-"deadzone": 0.1,
+"deadzone": 0.0,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":2,"axis_value":1.0,"script":null)
 ]
 }

@@ -10,14 +10,21 @@ var MEDIUM_FIREBALL_COUNT = 3
 
 var spell_queue = []
 
+# ** TODO ** Much of the P1 v P2 logic is baked into this script as well as bmage / wmage.
+# When a refactor comes this script will need to be looked at as well
+
 func _instantiate_fireball(caster):
 	var new_spell = Fireball.instantiate()
 	new_spell.caster = caster
-	if caster == "Wmage":  # TODO: This could be refactored 
+	if caster == "Wmage":
 		new_spell.modulate = Color (0, 0, 1)
 	return new_spell
 
 func new_spell(spell_type, caster):
+	# Check if there is a spell already loaded up, null it if so
+	if curr_spell:
+		curr_spell = null
+		spell_queue = []
 	var new_spell
 	curr_spell = spell_type
 	match spell_type:
@@ -38,13 +45,13 @@ func new_spell(spell_type, caster):
 			add_child(new_spell)
 			spell_queue.append(new_spell)
 		"special_move":
-			# TODO: New mechanic or refactor
-			if caster == "Bmage":
+			if caster == "Bmage": # Fireball mines special move
 				new_spell = _instantiate_fireball(caster)
 				add_child(new_spell)
 				spell_queue.append(new_spell)
-			elif caster == "Wmage":
+			elif caster == "Wmage": # Re-direction special move
 				new_spell = _instantiate_fireball(caster)
+				new_spell.speed = 150
 				add_child(new_spell)
 				spell_queue.append(new_spell)
 	return spell_queue
@@ -81,20 +88,21 @@ func cast_spell(lookvector, caster):
 				spell.cast(lookvector)
 				spell.reparent(get_parent().get_parent())
 		"special_move":
-			# TODO: New mechanic or refactor
-			if caster == "Bmage": 
+			if caster == "Bmage": # Fireball mines special move
 				for spell in spell_queue:
 					spell.cast(lookvector)
 					spell.reparent(get_parent().get_parent())
-			elif caster == "Wmage":
-				#for spell in spell_queue:
-					#spell.scale.x += 5
-					#spell.scale.y -= 2
+			elif caster == "Wmage": # Re-direction special move
 				for spell in spell_queue:
 					spell.cast(lookvector)
 					spell.reparent(get_parent().get_parent())
+				return # Allows for re-direction
 	spell_queue = []
 	curr_spell = null
 	
 func _process(delta):
 	pass
+
+func start():
+	for N in self.get_children():
+		N.queue_free()
