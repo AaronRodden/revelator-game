@@ -16,6 +16,7 @@ var spell_queue = []
 func _instantiate_fireball(caster):
 	var new_spell = Fireball.instantiate()
 	new_spell.caster = caster
+	# TODO: Add training mode "ghost" fireballs
 	if caster == "Wmage":
 		new_spell.modulate = Color (0, 0, 1)
 	return new_spell

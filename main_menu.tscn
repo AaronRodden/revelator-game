@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://b47kgy4t7hhhj"]
+
+[ext_resource type="Texture2D" uid="uid://bfwmtkx2pk43" path="res://icon.svg" id="1_7rjmk"]
+[ext_resource type="Texture2D" uid="uid://bnug0v1xhkxr1" path="res://assets/labels/Wizard Battle_ Revelator.png" id="1_bwxlj"]
+[ext_resource type="Script" path="res://main_menu.gd" id="1_mw2fn"]
+[ext_resource type="Texture2D" uid="uid://crblp2i45fxww" path="res://assets/labels/Versus.png" id="2_38y2d"]
+[ext_resource type="Texture2D" uid="uid://biomutlac5kd3" path="res://assets/labels/Training.png" id="3_sl0os"]
+
+[node name="MainMenu" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 5.0
+offset_right = 925.0
+offset_bottom = 544.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.555, 0.54)
+size_flags_horizontal = 6
+size_flags_vertical = 3
+theme_override_constants/margin_left = 120
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 120
+theme_override_constants/margin_bottom = 80
+script = ExtResource("1_mw2fn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 405
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+theme_override_constants/separation = 155
+alignment = 1
+
+[node name="Logo" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_bwxlj")
+
+[node name="Versus" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 2
+texture = ExtResource("2_38y2d")
+
+[node name="VersusButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Versus"
+
+[node name="Training" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 2
+texture = ExtResource("3_sl0os")
+
+[node name="TrainingButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Training"
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="SplashArt" type="TextureRect" parent="HBoxContainer/CenterContainer"]
+layout_mode = 2
+texture = ExtResource("1_7rjmk")
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/VersusButton" to="." method="_on_versus_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/TrainingButton" to="." method="_on_training_button_pressed"]

@@ -78,6 +78,7 @@ func _process(delta):
 	lookvector.y = (Input.get_action_strength("down_aim") - Input.	get_action_strength("up_aim"))
 	$SpellBook.position = spell_book_position + lookvector * 20
 	
+	# TODO: Add cast sound FX
 	if Input.is_action_just_pressed("shoot_spell"):
 		emit_signal("spell_cast")
 		$SpellBook.cast_spell(lookvector, self.name)
@@ -114,19 +115,23 @@ func _process(delta):
 	for move in bmage_moves:
 		if bmage_moves[move] == input_buffer: 
 			input_buffer = []
-			emit_signal("spell_completed")
+			emit_signal("spell_completed")  # TODO: Add load sound FX
 			$SpellBook.new_spell(move, self.name)
 	
 func start(pos):
 	position = pos
 	show()
+	if Global.training_mode: # Hurtboxes turned off
+		$Hurtbox.get_child(0).set_deferred("disabled", true)
+	else: # Hurtboxes turned on
+		$Hurtbox.get_child(0).set_deferred("disabled", false)
 	$CollisionShape2D.disabled = false
 	$CollisionShape2D.set_deferred("disabled", false)
-	$Hurtbox.get_child(0).set_deferred("disabled", false)
 
 func _physics_process(delta):
 	move_and_collide(Vector2(0, 0)) # Move down 1 pixel per physics frame
 
+# TODO: Add hit sound FX
 func _on_hurtbox_area_entered(area):
 	if area.caster != self.name and area.caster != null:
 		hide()  # Player disappears after being hit.

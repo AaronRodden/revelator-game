@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bm2erb45ptmj5"]
+[gd_scene load_steps=8 format=3 uid="uid://bm2erb45ptmj5"]
 
 [ext_resource type="PackedScene" uid="uid://b2pgalkm1uevl" path="res://arena.tscn" id="1_o8sir"]
 [ext_resource type="Script" path="res://main.gd" id="1_v5b6b"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bqmk6xo0vu5r" path="res://hud.tscn" id="3_a55rb"]
 [ext_resource type="PackedScene" uid="uid://creof7r0f43rs" path="res://wmage.tscn" id="5_jeu2w"]
 [ext_resource type="AudioStream" uid="uid://bve4tny10wumn" path="res://assets/soundfx/For Shovelry! (Boss Victory) - Shovel Knight [OST] [CzSnJ_1YVmY].mp3" id="6_4mu1f"]
+[ext_resource type="PackedScene" uid="uid://b47kgy4t7hhhj" path="res://main_menu.tscn" id="7_1uvis"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_v5b6b")
@@ -24,6 +25,9 @@ position = Vector2(684, 121)
 
 [node name="VictoryTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_4mu1f")
+
+[node name="MainMenu" parent="." instance=ExtResource("7_1uvis")]
+visible = false
 
 [connection signal="start_game" from="HUD" to="HUD" method="_on_start_game"]
 [connection signal="finished" from="MainMusic" to="." method="_on_audio_stream_player_finished"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://b2pgalkm1uevl"]
+[gd_scene load_steps=8 format=3 uid="uid://b2pgalkm1uevl"]
 
 [ext_resource type="Script" path="res://arena.gd" id="1_2nt1r"]
 [ext_resource type="Texture2D" uid="uid://dsssofrj02ihr" path="res://assets/Game Boy Advance - Dragon Ball Z The Legacy of Goku II - Cell Games Arena.png" id="1_w4fxw"]
+[ext_resource type="Texture2D" uid="uid://dqwogbbh75n45" path="res://assets/wall_tile.png" id="3_hny7g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tyiyi"]
 size = Vector2(20, 430)
@@ -13,7 +14,7 @@ size = Vector2(437.5, 20)
 size = Vector2(20, 439.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0vb4"]
-size = Vector2(438.5, 20)
+size = Vector2(423, 17)
 
 [node name="Arena" type="StaticBody2D"]
 collision_layer = 4
@@ -40,3 +41,17 @@ shape = SubResource("RectangleShape2D_tt0qg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(570, 154)
 shape = SubResource("RectangleShape2D_v0vb4")
+
+[node name="TrainingModeWall" type="CollisionShape2D" parent="."]
+position = Vector2(566.5, 374.5)
+shape = SubResource("RectangleShape2D_v0vb4")
+disabled = true
+
+[node name="WallTexture" type="TextureRect" parent="TrainingModeWall"]
+visible = false
+offset_left = -206.0
+offset_top = -8.0
+offset_right = 215.0
+offset_bottom = 8.0
+texture = ExtResource("3_hny7g")
+stretch_mode = 1
