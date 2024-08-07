@@ -15,7 +15,7 @@ var curr_spell
 var lookvector = Vector2.ZERO
 var input_buffer = []
 
-var wmage_moves = {
+var bmage_moves = {
 	"light_fireball": ["down", "right", "y"], 
 	"medium_fireball": ["down", "left", "x"], 
 	"heavy_fireball": ["right", "down", "right", "b"], 
@@ -76,7 +76,7 @@ func _process(delta):
 	if velocity.x != 0:
 		$AnimatedSprite2D.animation = "walk"
 		$AnimatedSprite2D.flip_v = false
-		$AnimatedSprite2D.flip_h = velocity.x < 0
+		$AnimatedSprite2D.flip_h = velocity.x > 0
 	if velocity.y != 0:
 		$AnimatedSprite2D.animation = "walk"
 	
@@ -119,8 +119,8 @@ func _process(delta):
 		input_buffer.push_back("y")
 		emit_signal("spell_input", "y")
 	
-	for move in wmage_moves:
-		if wmage_moves[move] == input_buffer: 
+	for move in bmage_moves:
+		if bmage_moves[move] == input_buffer: 
 			input_buffer = []
 			emit_signal("spell_completed") # TODO: Add load sound FX
 			$SpellBook.new_spell(move, self.name)

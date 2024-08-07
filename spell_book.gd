@@ -4,21 +4,22 @@ extends Sprite2D
 var spell_type
 var curr_spell
 
-var Fireball = preload("res://assets/animations/fireball.tscn")
+var Fireball = preload("res://fireball.tscn")
+var BigFireball = preload("res://big_fireball.tscn")
+var LaserCharge = preload("res://laser_charge.tscn")
+var Landmine = preload("res://landmine.tscn")
+var HomingArrow = preload("res://homing_arrow.tscn")
 var LIGHT_FIREBALL_COUNT = 3
 var MEDIUM_FIREBALL_COUNT = 3
 
 var spell_queue = []
 
-# ** TODO ** Much of the P1 v P2 logic is baked into this script as well as bmage / wmage.
+# ** TODO ** Much of the P1 v P2 logic is baked into this script as well as Rmage / Bage.
 # When a refactor comes this script will need to be looked at as well
 
 func _instantiate_fireball(caster):
 	var new_spell = Fireball.instantiate()
-	new_spell.caster = caster
-	# TODO: Add training mode "ghost" fireballs
-	if caster == "Wmage":
-		new_spell.modulate = Color (0, 0, 1)
+	new_spell.set_caster(caster)
 	return new_spell
 
 func new_spell(spell_type, caster):
@@ -31,32 +32,35 @@ func new_spell(spell_type, caster):
 	match spell_type:
 		"light_fireball":
 			for i in range(0, LIGHT_FIREBALL_COUNT):	
-				new_spell = _instantiate_fireball(caster)
+				new_spell = Fireball.instantiate()
+				new_spell.set_caster(caster)
 				add_child(new_spell)
 				spell_queue.append(new_spell)
 		"medium_fireball":
 			for i in range(0, MEDIUM_FIREBALL_COUNT):	
-				new_spell = _instantiate_fireball(caster)
+				new_spell = LaserCharge.instantiate()
+				new_spell.set_caster(caster)
 				add_child(new_spell)
 				spell_queue.append(new_spell)
 		"heavy_fireball":
-			new_spell = _instantiate_fireball(caster)
-			new_spell.scale.x += 5
-			new_spell.scale.y += 5
+			new_spell = BigFireball.instantiate()
+			new_spell.set_caster(caster)
 			add_child(new_spell)
 			spell_queue.append(new_spell)
 		"special_move":
-			if caster == "Bmage": # Fireball mines special move
-				new_spell = _instantiate_fireball(caster)
+			if caster == "Rmage": # Fireball mines special move
+				new_spell = Landmine.instantiate()
+				new_spell.set_caster(caster)
 				add_child(new_spell)
 				spell_queue.append(new_spell)
-			elif caster == "Wmage": # Re-direction special move
-				new_spell = _instantiate_fireball(caster)
-				new_spell.speed = 150
+			elif caster == "Bmage": # Re-direction special move
+				new_spell = HomingArrow.instantiate()
+				new_spell.set_caster(caster)
 				add_child(new_spell)
 				spell_queue.append(new_spell)
 	return spell_queue
 
+# TODO: Move casting logic into respective classes
 func cast_spell(lookvector, caster):
 	# Can't cast non special spells witout aiming
 	if curr_spell:
@@ -73,15 +77,16 @@ func cast_spell(lookvector, caster):
 			var lookvector_copy = lookvector
 			for i in spell_queue.size():
 				var spell = spell_queue[i]
+				# TODO: Deadzones and stuff?
 				if i == 0:
-					lookvector.x -= 0.25
-					lookvector.y += 0.25
+					lookvector.x -= 0.45
+					lookvector.y += 0.45
 				elif i == 1:
 					lookvector.x = lookvector_copy.x
 					lookvector.y = lookvector_copy.y
 				elif i == 2:
-					lookvector.x += 0.25
-					lookvector.y -= 0.25
+					lookvector.x += 0.45
+					lookvector.y -= 0.45
 				spell.cast(lookvector)
 				spell.reparent(get_parent().get_parent())
 		"heavy_fireball":
@@ -89,11 +94,11 @@ func cast_spell(lookvector, caster):
 				spell.cast(lookvector)
 				spell.reparent(get_parent().get_parent())
 		"special_move":
-			if caster == "Bmage": # Fireball mines special move
+			if caster == "Rmage": # Fireball mines special move
 				for spell in spell_queue:
 					spell.cast(lookvector)
 					spell.reparent(get_parent().get_parent())
-			elif caster == "Wmage": # Re-direction special move
+			elif caster == "Bmage": # Re-direction special move
 				for spell in spell_queue:
 					spell.cast(lookvector)
 					spell.reparent(get_parent().get_parent())

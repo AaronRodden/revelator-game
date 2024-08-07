@@ -1,57 +1,368 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2pgalkm1uevl"]
+[gd_scene load_steps=34 format=3 uid="uid://b2pgalkm1uevl"]
 
 [ext_resource type="Script" path="res://arena.gd" id="1_2nt1r"]
-[ext_resource type="Texture2D" uid="uid://dsssofrj02ihr" path="res://assets/Game Boy Advance - Dragon Ball Z The Legacy of Goku II - Cell Games Arena.png" id="1_w4fxw"]
+[ext_resource type="Texture2D" uid="uid://cn7vfuba5y4i2" path="res://assets/grass_15.png" id="2_juy2i"]
+[ext_resource type="Texture2D" uid="uid://bxrut8pfwmnq2" path="res://assets/arena_tiles.png" id="2_syq8k"]
 [ext_resource type="Texture2D" uid="uid://dqwogbbh75n45" path="res://assets/wall_tile.png" id="3_hny7g"]
+[ext_resource type="Texture2D" uid="uid://cbdssnoi1bbl2" path="res://assets/wizard_fan_sheet_purple.png" id="6_k4x3p"]
+[ext_resource type="Texture2D" uid="uid://b7wk0w5hpivyw" path="res://assets/arena_stand.png" id="6_s55vx"]
+[ext_resource type="Texture2D" uid="uid://cym1d87lis1ge" path="res://assets/wizard_fan_sheet_orange.png" id="7_h45s2"]
+[ext_resource type="Texture2D" uid="uid://dk3o0t87hdiir" path="res://assets/wizard_fan_green_sheet.png" id="8_0djvd"]
+[ext_resource type="Texture2D" uid="uid://ca4167ipfmm1s" path="res://assets/wizard_fan_sheet_black.png" id="9_dtwlv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tyiyi"]
-size = Vector2(20, 430)
+size = Vector2(26, 456)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7jjli"]
-size = Vector2(437.5, 20)
+size = Vector2(528, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tt0qg"]
-size = Vector2(20, 439.5)
+size = Vector2(26, 464)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0vb4"]
-size = Vector2(423, 17)
+size = Vector2(536, 20.25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_roiyx"]
+atlas = ExtResource("6_k4x3p")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1gcgm"]
+atlas = ExtResource("6_k4x3p")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4xbg"]
+atlas = ExtResource("6_k4x3p")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qkqxe"]
+atlas = ExtResource("6_k4x3p")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_whgf5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_roiyx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1gcgm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n4xbg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qkqxe")
+}],
+"loop": true,
+"name": &"watch",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s15xu"]
+atlas = ExtResource("7_h45s2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1536a"]
+atlas = ExtResource("7_h45s2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5fxb"]
+atlas = ExtResource("7_h45s2")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8owci"]
+atlas = ExtResource("7_h45s2")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1yb48"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s15xu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1536a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5fxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8owci")
+}],
+"loop": true,
+"name": &"watch",
+"speed": 3.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ult0l"]
+atlas = ExtResource("9_dtwlv")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wtrge"]
+atlas = ExtResource("9_dtwlv")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_us3sc"]
+atlas = ExtResource("9_dtwlv")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vdcc"]
+atlas = ExtResource("9_dtwlv")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3nvbw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ult0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wtrge")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_us3sc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vdcc")
+}],
+"loop": true,
+"name": &"watch",
+"speed": 2.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ymy8k"]
+atlas = ExtResource("8_0djvd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gacao"]
+atlas = ExtResource("8_0djvd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3p12y"]
+atlas = ExtResource("8_0djvd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bd5w"]
+atlas = ExtResource("8_0djvd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bcp78"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ymy8k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gacao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3p12y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1bd5w")
+}],
+"loop": true,
+"name": &"watch",
+"speed": 4.0
+}]
 
 [node name="Arena" type="StaticBody2D"]
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_2nt1r")
 
+[node name="Grass15" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+scale = Vector2(1.8, 1.0125)
+texture = ExtResource("2_juy2i")
+
 [node name="arena_sprite" type="Sprite2D" parent="."]
-position = Vector2(573.125, 332.21)
-scale = Vector2(1.64104, 1.64104)
-texture = ExtResource("1_w4fxw")
+position = Vector2(576, 376)
+scale = Vector2(1.68182, 1.27695)
+texture = ExtResource("2_syq8k")
 
 [node name="ArenaCollisionLeft" type="CollisionShape2D" parent="."]
-position = Vector2(350, 380)
+position = Vector2(320, 372)
 shape = SubResource("RectangleShape2D_tyiyi")
 
 [node name="ArenaCollisionBottom" type="CollisionShape2D" parent="."]
-position = Vector2(563, 595)
+position = Vector2(578, 610)
 shape = SubResource("RectangleShape2D_7jjli")
 
 [node name="ArenaCollisionRight" type="CollisionShape2D" parent="."]
-position = Vector2(792, 384.75)
+position = Vector2(830, 384)
 shape = SubResource("RectangleShape2D_tt0qg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(570, 154)
+position = Vector2(576, 141)
 shape = SubResource("RectangleShape2D_v0vb4")
 
 [node name="TrainingModeWall" type="CollisionShape2D" parent="."]
-position = Vector2(566.5, 374.5)
+position = Vector2(576, 371.75)
 shape = SubResource("RectangleShape2D_v0vb4")
 disabled = true
 
 [node name="WallTexture" type="TextureRect" parent="TrainingModeWall"]
 visible = false
-offset_left = -206.0
+offset_left = -240.0
 offset_top = -8.0
-offset_right = 215.0
-offset_bottom = 8.0
+offset_right = 240.0
+offset_bottom = 10.0
 texture = ExtResource("3_hny7g")
 stretch_mode = 1
+
+[node name="ArenaStand" type="Sprite2D" parent="."]
+position = Vector2(416, 78)
+scale = Vector2(1.563, 1.563)
+texture = ExtResource("6_s55vx")
+
+[node name="ArenaStand2" type="Sprite2D" parent="."]
+position = Vector2(576, 78)
+scale = Vector2(1.5625, 1.5625)
+texture = ExtResource("6_s55vx")
+
+[node name="ArenaStand3" type="Sprite2D" parent="."]
+position = Vector2(736, 78)
+scale = Vector2(1.563, 1.563)
+texture = ExtResource("6_s55vx")
+
+[node name="PurpleRobeFan" type="AnimatedSprite2D" parent="."]
+position = Vector2(368, 64)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_whgf5")
+animation = &"watch"
+autoplay = "watch"
+
+[node name="OrangeRobeFan" type="AnimatedSprite2D" parent="."]
+position = Vector2(360, 96)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_1yb48")
+animation = &"watch"
+autoplay = "watch"
+
+[node name="BlackRobeFan5" type="AnimatedSprite2D" parent="."]
+position = Vector2(416, 64)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_3nvbw")
+animation = &"watch"
+autoplay = "watch"
+
+[node name="GreenRobeFan" type="AnimatedSprite2D" parent="."]
+position = Vector2(408, 96)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_bcp78")
+animation = &"watch"
+autoplay = "watch"
+frame = 2
+frame_progress = 0.734988
+
+[node name="OrangeRobeFan3" type="AnimatedSprite2D" parent="."]
+position = Vector2(680, 40)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_1yb48")
+animation = &"watch"
+autoplay = "watch"
+
+[node name="BlackRobeFan" type="AnimatedSprite2D" parent="."]
+position = Vector2(464, 96)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_3nvbw")
+animation = &"watch"
+autoplay = "watch"
+
+[node name="PurpleRobeFan4" type="AnimatedSprite2D" parent="."]
+position = Vector2(472, 40)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_whgf5")
+animation = &"watch"
+autoplay = "watch"
+
+[node name="OrangeRobeFan6" type="AnimatedSprite2D" parent="."]
+position = Vector2(456, 64)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_1yb48")
+animation = &"watch"
+autoplay = "watch"
+
+[node name="BlackRobeFan3" type="AnimatedSprite2D" parent="."]
+position = Vector2(680, 72)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_3nvbw")
+animation = &"watch"
+autoplay = "watch"
+
+[node name="BlackRobeFan4" type="AnimatedSprite2D" parent="."]
+position = Vector2(784, 40)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_3nvbw")
+animation = &"watch"
+autoplay = "watch"
+
+[node name="GreenRobeFan2" type="AnimatedSprite2D" parent="."]
+position = Vector2(768, 56)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_bcp78")
+animation = &"watch"
+autoplay = "watch"
+frame = 2
+frame_progress = 0.734988
+
+[node name="GreenRobeFan3" type="AnimatedSprite2D" parent="."]
+position = Vector2(561, 78)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_bcp78")
+animation = &"watch"
+autoplay = "watch"
+frame = 2
+frame_progress = 0.734988
+
+[node name="GreenRobeFan4" type="AnimatedSprite2D" parent="."]
+position = Vector2(680, 96)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_bcp78")
+animation = &"watch"
+autoplay = "watch"
+frame = 2
+frame_progress = 0.734988
+
+[node name="PurpleRobeFan2" type="AnimatedSprite2D" parent="."]
+position = Vector2(520, 96)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_whgf5")
+animation = &"watch"
+autoplay = "watch"
+
+[node name="PurpleRobeFan3" type="AnimatedSprite2D" parent="."]
+position = Vector2(734, 59)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_whgf5")
+animation = &"watch"
+autoplay = "watch"
+
+[node name="OrangeRobeFan2" type="AnimatedSprite2D" parent="."]
+position = Vector2(600, 79)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_1yb48")
+animation = &"watch"
+autoplay = "watch"
+
+[node name="OrangeRobeFan4" type="AnimatedSprite2D" parent="."]
+position = Vector2(744, 96)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_1yb48")
+animation = &"watch"
+autoplay = "watch"
+
+[node name="OrangeRobeFan5" type="AnimatedSprite2D" parent="."]
+position = Vector2(520, 40)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_1yb48")
+animation = &"watch"
+autoplay = "watch"
+
+[node name="BlackRobeFan2" type="AnimatedSprite2D" parent="."]
+position = Vector2(576, 96)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_3nvbw")
+animation = &"watch"
+autoplay = "watch"

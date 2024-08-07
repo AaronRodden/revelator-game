@@ -1,12 +1,57 @@
-[gd_scene load_steps=32 format=3 uid="uid://nmmeg3d72svs"]
+[gd_scene load_steps=44 format=3 uid="uid://nmmeg3d72svs"]
 
 [ext_resource type="Texture2D" uid="uid://nsgstlrq3pfp" path="res://assets/Browser Games - Super Mario Bros Crossover - Fighter Thief Black Mage and White Mage.png" id="1_fcncq"]
 [ext_resource type="Script" path="res://bmage.gd" id="1_nld2k"]
+[ext_resource type="Texture2D" uid="uid://bhmbhtloulreo" path="res://assets/wizard_sprite_red_sheet.png" id="2_en35x"]
 [ext_resource type="Texture2D" uid="uid://cux32pxubuics" path="res://assets/Game Boy GBC - Dance Dance Revolution GB Disney Mix JPN - Arrows.png" id="3_ml6p7"]
 [ext_resource type="PackedScene" uid="uid://7551sn1rqmfk" path="res://spell_book.tscn" id="8_hogf4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pl16x"]
 size = Vector2(28, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpapj"]
+atlas = ExtResource("2_en35x")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsret"]
+atlas = ExtResource("2_en35x")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_335gm"]
+atlas = ExtResource("2_en35x")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3k24t"]
+atlas = ExtResource("2_en35x")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dw1jo"]
+atlas = ExtResource("2_en35x")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fq4wg"]
+atlas = ExtResource("2_en35x")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oe8n3"]
+atlas = ExtResource("2_en35x")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6hxo"]
+atlas = ExtResource("2_en35x")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_op8sg"]
+atlas = ExtResource("2_en35x")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_07y66"]
+atlas = ExtResource("2_en35x")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a7uhd"]
+atlas = ExtResource("2_en35x")
+region = Rect2(320, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lkxlj"]
 atlas = ExtResource("1_fcncq")
@@ -40,6 +85,44 @@ region = Rect2(331, 196, 44, 44)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_cpapj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsret")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_335gm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3k24t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dw1jo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fq4wg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oe8n3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6hxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_op8sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_07y66")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a7uhd")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_lkxlj")
 }, {
 "duration": 1.0,
@@ -61,7 +144,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_00nfi")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"walk_old",
 "speed": 5.0
 }]
 
@@ -188,8 +271,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5hco"]
 size = Vector2(25, 37)
 
-[node name="Bmage" type="CharacterBody2D"]
-visible = false
+[node name="Rmage" type="CharacterBody2D"]
 collision_mask = 5
 script = ExtResource("1_nld2k")
 
@@ -198,7 +280,8 @@ position = Vector2(56, 81)
 shape = SubResource("RectangleShape2D_pl16x")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(57, 69)
+position = Vector2(56, 80)
+rotation = -6.28319
 scale = Vector2(1.43333, 1.43333)
 sprite_frames = SubResource("SpriteFrames_laqup")
 animation = &"walk"

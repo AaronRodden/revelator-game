@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://b47kgy4t7hhhj"]
+[gd_scene load_steps=7 format=3 uid="uid://b47kgy4t7hhhj"]
 
 [ext_resource type="Texture2D" uid="uid://bfwmtkx2pk43" path="res://icon.svg" id="1_7rjmk"]
 [ext_resource type="Texture2D" uid="uid://bnug0v1xhkxr1" path="res://assets/labels/Wizard Battle_ Revelator.png" id="1_bwxlj"]
 [ext_resource type="Script" path="res://main_menu.gd" id="1_mw2fn"]
 [ext_resource type="Texture2D" uid="uid://crblp2i45fxww" path="res://assets/labels/Versus.png" id="2_38y2d"]
 [ext_resource type="Texture2D" uid="uid://biomutlac5kd3" path="res://assets/labels/Training.png" id="3_sl0os"]
+[ext_resource type="AudioStream" uid="uid://cvpe8vagrnxeo" path="res://assets/Undernight In-birth Exe：Late(st)(arcade) 8bit - Character Select - Looped.mp3" id="6_w2gpk"]
 
 [node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -70,6 +71,9 @@ layout_mode = 2
 [node name="SplashArt" type="TextureRect" parent="HBoxContainer/CenterContainer"]
 layout_mode = 2
 texture = ExtResource("1_7rjmk")
+
+[node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_w2gpk")
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/VersusButton" to="." method="_on_versus_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/TrainingButton" to="." method="_on_training_button_pressed"]

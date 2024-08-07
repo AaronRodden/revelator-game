@@ -13,15 +13,17 @@ script = ExtResource("1_v5b6b")
 
 [node name="Arena" parent="." instance=ExtResource("1_o8sir")]
 
-[node name="Bmage" parent="." instance=ExtResource("2_vwoga")]
+[node name="Rmage" parent="." instance=ExtResource("2_vwoga")]
 position = Vector2(343, 457)
 
-[node name="Wmage" parent="." instance=ExtResource("5_jeu2w")]
+[node name="Bmage" parent="." instance=ExtResource("5_jeu2w")]
 position = Vector2(684, 121)
 
 [node name="HUD" parent="." instance=ExtResource("3_a55rb")]
 
 [node name="MainMusic" type="AudioStreamPlayer" parent="."]
+
+[node name="TrainingModeMusic" type="AudioStreamPlayer2D" parent="."]
 
 [node name="VictoryTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_4mu1f")

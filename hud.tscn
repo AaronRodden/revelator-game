@@ -1,10 +1,12 @@
-[gd_scene load_steps=18 format=3 uid="uid://bqmk6xo0vu5r"]
+[gd_scene load_steps=20 format=3 uid="uid://bqmk6xo0vu5r"]
 
 [ext_resource type="Texture2D" uid="uid://b27fsnydq1xdi" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_dpad_right.svg" id="1_mvk6c"]
 [ext_resource type="Script" path="res://hud.gd" id="1_pj8pv"]
 [ext_resource type="Texture2D" uid="uid://b7bcm3otfsrkm" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_dpad_up.svg" id="2_ripcd"]
 [ext_resource type="PackedScene" uid="uid://dssrjn8vdt51k" path="res://spell_input_ui.tscn" id="2_w1ksp"]
 [ext_resource type="Texture2D" uid="uid://b782we6mhe5xu" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_dpad_down.svg" id="3_fhc41"]
+[ext_resource type="Texture2D" uid="uid://cb7h2hs3fqvgq" path="res://assets/MoveListRed.png" id="3_iipp0"]
+[ext_resource type="Texture2D" uid="uid://bswqol84vg5so" path="res://assets/MoveListBlue.png" id="4_1q3ee"]
 [ext_resource type="Texture2D" uid="uid://hgigmqva7po1" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_button_color_cross.svg" id="5_273hj"]
 [ext_resource type="Texture2D" uid="uid://cxu8tuf1uvxow" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_button_color_circle.svg" id="6_2oava"]
 [ext_resource type="Texture2D" uid="uid://paipibhqigla" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_button_color_triangle.svg" id="7_ey71d"]
@@ -21,6 +23,16 @@
 [node name="HUD" type="Node"]
 script = ExtResource("1_pj8pv")
 spell_input_ui = ExtResource("2_w1ksp")
+
+[node name="MoveListRed" type="Sprite2D" parent="."]
+position = Vector2(128, 324)
+scale = Vector2(0.283333, 0.276451)
+texture = ExtResource("3_iipp0")
+
+[node name="MoveListBlue" type="Sprite2D" parent="."]
+position = Vector2(1016, 324)
+scale = Vector2(0.283, 0.276)
+texture = ExtResource("4_1q3ee")
 
 [node name="spell_right" type="Sprite2D" parent="."]
 visible = false
@@ -62,8 +74,13 @@ visible = false
 position = Vector2(43, 110)
 texture = ExtResource("8_ta72m")
 
-[node name="SpellInputUI" parent="." instance=ExtResource("2_w1ksp")]
-position = Vector2(88, 98)
+[node name="P1SpellInputUI" parent="." instance=ExtResource("2_w1ksp")]
+position = Vector2(77.0001, 208)
+scale = Vector2(0.8125, 0.8125)
+
+[node name="P2SpellInputUI" parent="." instance=ExtResource("2_w1ksp")]
+position = Vector2(960, 208)
+scale = Vector2(0.8125, 0.8125)
 
 [node name="X" type="Sprite2D" parent="."]
 visible = false
@@ -114,10 +131,10 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("17_t6l0o")
 
 [node name="Button" type="Button" parent="."]
-offset_left = 440.0
-offset_top = 288.0
-offset_right = 665.0
-offset_bottom = 368.0
+offset_left = 456.0
+offset_top = 280.0
+offset_right = 681.0
+offset_bottom = 360.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Press Start"
@@ -128,11 +145,12 @@ anchor_left = 0.056
 anchor_top = 0.889
 anchor_right = 0.056
 anchor_bottom = 0.889
-offset_left = -0.512001
-offset_top = -88.072
-offset_right = 99.488
-offset_bottom = -0.0720215
+offset_left = 99.488
+offset_top = -575.072
+offset_right = 139.488
+offset_bottom = -472.072
 grow_vertical = 0
+scale = Vector2(1.5, 1.5)
 theme_override_font_sizes/font_size = 64
 text = "0"
 
@@ -142,11 +160,12 @@ anchor_left = 0.889
 anchor_top = 0.173
 anchor_right = 0.889
 anchor_bottom = 0.173
-offset_left = -0.128052
-offset_top = -88.104
-offset_right = 99.8719
-offset_bottom = -0.104004
+offset_left = -92.1281
+offset_top = -111.104
+offset_right = -52.1281
+offset_bottom = -10.104
 grow_vertical = 0
+scale = Vector2(1.5, 1.5)
 theme_override_font_sizes/font_size = 64
 text = "0"
 

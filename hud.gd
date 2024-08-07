@@ -3,8 +3,11 @@ extends Node
 signal start_game
 
 var screen_size
-var input_display = []
-var curr_offset = 0.0
+var p1_input_display = []
+var p2_input_display = []
+#var curr_offset = 0.0
+var p1_offset = 0.0
+var p2_offset = 0.0
 var p1_score = 0
 var p2_score = 0
 
@@ -22,19 +25,29 @@ func _process(delta):
 		start_game.emit()
 
 
-func spell_display(input):
+func spell_display(input, player):
 	var new_spell_input_ui
-	new_spell_input_ui = $SpellInputUI.new_spell_input_ui(input, curr_offset)
-	add_child(new_spell_input_ui)
-	input_display.append(new_spell_input_ui)
-	curr_offset += 50
+	if player == 0:
+		new_spell_input_ui = $P1SpellInputUI.new_spell_input_ui(input, player)
+		add_child(new_spell_input_ui)
+		p1_input_display.append(new_spell_input_ui)
+	elif player == 1:
+		new_spell_input_ui = $P2SpellInputUI.new_spell_input_ui(input, player)
+		add_child(new_spell_input_ui)
+		p2_input_display.append(new_spell_input_ui)
 	
-
-func clear_spell_inputs():
-	for ui_input in input_display:
-		ui_input.queue_free()
-	input_display = []  # Clear input display
-	curr_offset = 0.0
+	
+func clear_spell_inputs(player):
+	if player == 0:
+		for ui_input in p1_input_display:
+			ui_input.queue_free()
+		p1_input_display = []  # Clear input display
+		$P1SpellInputUI.h_offset = 0.0
+	elif player == 1:
+		for ui_input in p2_input_display:
+			ui_input.queue_free()
+		p2_input_display = []  # Clear input display
+		$P2SpellInputUI.h_offset = 0.0
 
 func round_win(player):
 	if player == 0:
@@ -43,12 +56,14 @@ func round_win(player):
 	elif player == 1:
 		p2_score += 1
 		$P2Score.text = str(p2_score)
-		
+
+
+#TODO: Logic for resetting game, "closing the loop"		
 func victory(player):
 	if player == 0:
-		$VictoryText.text = "B-Mage wins!"
+		$VictoryText.text = "Red Mage wins!"
 	elif player == 1:
-		$VictoryText.text = "W-Mage wins!"
+		$VictoryText.text = "Blue Mage wins!"
 	$VictoryText.visible = true
 
 func round_countdown(time):

@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://hnu1ca7uqu5d"]
+
+[ext_resource type="Texture2D" uid="uid://b6no0l8pqigp" path="res://assets/landmine.png" id="1_ndt8n"]
+[ext_resource type="Script" path="res://landmine.gd" id="1_u5qhd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0skm0"]
+atlas = ExtResource("1_ndt8n")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jiox"]
+atlas = ExtResource("1_ndt8n")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajy56"]
+atlas = ExtResource("1_ndt8n")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xppks"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0skm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jiox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajy56")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2n0ir"]
+radius = 80.0
+
+[node name="Landmine" type="Area2D"]
+script = ExtResource("1_u5qhd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(3.5, 3.5)
+sprite_frames = SubResource("SpriteFrames_xppks")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2n0ir")

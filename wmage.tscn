@@ -1,12 +1,57 @@
-[gd_scene load_steps=32 format=3 uid="uid://creof7r0f43rs"]
+[gd_scene load_steps=44 format=3 uid="uid://creof7r0f43rs"]
 
 [ext_resource type="Script" path="res://wmage.gd" id="1_4ek81"]
 [ext_resource type="Texture2D" uid="uid://nsgstlrq3pfp" path="res://assets/Browser Games - Super Mario Bros Crossover - Fighter Thief Black Mage and White Mage.png" id="2_nwo03"]
+[ext_resource type="Texture2D" uid="uid://0ckcwdiq0xdh" path="res://assets/wizard_sprite_blue_sheet.png" id="2_yv5pd"]
 [ext_resource type="Texture2D" uid="uid://cux32pxubuics" path="res://assets/Game Boy GBC - Dance Dance Revolution GB Disney Mix JPN - Arrows.png" id="3_psq7o"]
 [ext_resource type="PackedScene" uid="uid://7551sn1rqmfk" path="res://spell_book.tscn" id="5_31x02"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sd4oi"]
 size = Vector2(29, 38.9063)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v65cc"]
+atlas = ExtResource("2_yv5pd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0cbt5"]
+atlas = ExtResource("2_yv5pd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stn8s"]
+atlas = ExtResource("2_yv5pd")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb6i5"]
+atlas = ExtResource("2_yv5pd")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7kq4"]
+atlas = ExtResource("2_yv5pd")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sfuox"]
+atlas = ExtResource("2_yv5pd")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6f3x"]
+atlas = ExtResource("2_yv5pd")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aylqs"]
+atlas = ExtResource("2_yv5pd")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_codqq"]
+atlas = ExtResource("2_yv5pd")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3djk0"]
+atlas = ExtResource("2_yv5pd")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nr6g"]
+atlas = ExtResource("2_yv5pd")
+region = Rect2(320, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ypp1a"]
 atlas = ExtResource("2_nwo03")
@@ -40,6 +85,44 @@ region = Rect2(331, 337, 44, 44)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_v65cc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0cbt5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stn8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cb6i5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7kq4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sfuox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6f3x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aylqs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_codqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3djk0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nr6g")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ypp1a")
 }, {
 "duration": 1.0,
@@ -61,7 +144,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_x6jx1")
 }],
 "loop": true,
-"name": &"walk",
+"name": &"walk_old",
 "speed": 5.0
 }]
 
@@ -188,8 +271,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qkcx4"]
 size = Vector2(24, 36)
 
-[node name="Wmage" type="CharacterBody2D"]
-visible = false
+[node name="Bmage" type="CharacterBody2D"]
 collision_mask = 5
 script = ExtResource("1_4ek81")
 
@@ -198,7 +280,7 @@ position = Vector2(57.99, 80.453)
 shape = SubResource("RectangleShape2D_sd4oi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(57, 69)
+position = Vector2(58, 79)
 scale = Vector2(1.43333, 1.43333)
 sprite_frames = SubResource("SpriteFrames_bidxl")
 animation = &"walk"

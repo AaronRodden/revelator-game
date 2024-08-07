@@ -2,7 +2,6 @@ class_name SpellInputUI
 extends Sprite2D
 
 var spell_texture
-var h_offset
 
 # TODO: Make these work on export
 var right_tex = Image.load_from_file("res://addons/awesome_input_icons/assets/ps4_vector/playstation_dpad_right.svg")
@@ -23,17 +22,21 @@ var b_tex = Image.load_from_file("res://assets/Switch Button Icons and Controls/
 var x_tex = Image.load_from_file("res://assets/Switch Button Icons and Controls/Buttons Full Solid/White/SVG/X.svg")
 var y_tex = Image.load_from_file("res://assets/Switch Button Icons and Controls/Buttons Full Solid/White/SVG/Y.svg")
 
-var P1_X_STARTING_POSITON = 83
-var P1_Y_STARTING_POSITION = 99
+# TODO: This is all hard coded right now!
+var P1_X_STARTING_POSITON = 56
+var P1_Y_STARTING_POSITION = 208
 
-var P2_X_STARTING_POSITON = 867
-var P2_Y_STARTING_POSITION = 578
+var P2_X_STARTING_POSITON = 936
+var P2_Y_STARTING_POSITION = 208
 var p2_face_buttons = ["a", "b", "x", "y"]
 
-func new_spell_input_ui(spell_input: String, h_offset := 50.0):
+var h_offset = 0.0
+
+func new_spell_input_ui(spell_input: String, player: int):
 	var new_spell_input_ui = SpellInputUI.new()
 	new_spell_input_ui.spell_texture = spell_input
 	new_spell_input_ui.h_offset = h_offset
+	h_offset += 50
 	return new_spell_input_ui
 	
 func _ready():

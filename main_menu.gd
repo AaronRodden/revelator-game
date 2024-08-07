@@ -5,6 +5,8 @@ signal training_mode
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$HBoxContainer/VBoxContainer/VersusButton.grab_focus()
+	
+	$MainMenuMusic.play()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -23,9 +25,11 @@ func _process(delta):
 
 
 func _on_versus_button_pressed():
+	$MainMenuMusic.stop()
 	get_tree().change_scene_to_file("res://main.tscn")
 
 
 func _on_training_button_pressed():
 	Global.training_mode = true
+	$MainMenuMusic.stop()
 	get_tree().change_scene_to_file("res://main.tscn")

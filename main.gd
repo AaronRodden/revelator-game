@@ -6,8 +6,8 @@ var current_song
 var MUSIC_PATH = "res://assets/music/"
 var rng = RandomNumberGenerator.new()
 
-var BMAGE_START_POS = Vector2(343, 457)
-var WMAGE_START_POS = Vector2(684, 121)
+var RMAGE_START_POS = Vector2(343, 457)
+var BMAGE_START_POS = Vector2(684, 121)
 var ROUND_WINS_MAX = 3
 
 var p1_score = 0
@@ -37,12 +37,12 @@ func _ready():
 	# Controller Connections
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
 	
-	$Bmage.connect("spell_input", $HUD.spell_display, 0)
-	$Bmage.connect("spell_cast", $HUD.clear_spell_inputs, 0)
+	$Rmage.connect("spell_input", $HUD.spell_display.bind(0), 0)
+	$Rmage.connect("spell_cast", $HUD.clear_spell_inputs.bind(0), 0)
 
 	
-	$Wmage.connect("spell_input", $HUD.spell_display, 0)
-	$Wmage.connect("spell_cast", $HUD.clear_spell_inputs, 0)
+	$Bmage.connect("spell_input", $HUD.spell_display.bind(1), 0)
+	$Bmage.connect("spell_cast", $HUD.clear_spell_inputs.bind(1), 0)
 
 
 	$HUD.start_game.connect($Arena.set_arena)
@@ -50,35 +50,37 @@ func _ready():
 	if Global.training_mode:
 		$HUD.start_game.connect(start_training_mode)
 	else:
-		$Bmage.hit.connect(wmage_round_win)
-		$Wmage.hit.connect(bmage_round_win)
-	
 		$HUD.start_game.connect(new_game)
+		
+	$MainMenu/MainMenuMusic.stop()
 	
 func new_round():
+	$Rmage.controller_lock = true
 	$Bmage.controller_lock = true
-	$Wmage.controller_lock = true
 	
 	# Remove all existing fireballs 
 	for N in self.get_children():
-		if N.name.contains("Area2D"):
+		if N.name.contains("Area2D") or N.name.contains("Landmine"):
 			N.queue_free()
 	
+	$Rmage.start(RMAGE_START_POS)
 	$Bmage.start(BMAGE_START_POS)
-	$Wmage.start(WMAGE_START_POS)
 	
 	for i in range(3, -1, -1):
 		$HUD.round_countdown(i)
 		if i > 0:
 			await get_tree().create_timer(1).timeout
 	
+	$Rmage.controller_lock = false
 	$Bmage.controller_lock = false
-	$Wmage.controller_lock = false
 	
 func new_game():
 	current_song = null # new song
 	start_music()
 	new_round()
+	
+	$Rmage.hit.connect(bmage_round_win)
+	$Bmage.hit.connect(rmage_round_win)
 	
 func start_training_mode():
 	current_song = null # new song
@@ -86,14 +88,14 @@ func start_training_mode():
 	#start_music()
 	#new_round()
 	
+	$Rmage.start(RMAGE_START_POS)
 	$Bmage.start(BMAGE_START_POS)
-	$Wmage.start(WMAGE_START_POS)
 	
 	Global.training_mode = false
 	$HUD.start_game.connect(new_game)
 	
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
+#funcr _process(delta):
 	#pass
 	
 func _on_joy_connection_changed(device_id, connected):
@@ -102,33 +104,33 @@ func _on_joy_connection_changed(device_id, connected):
 	else:
 		print("Keyboard")
 
-func bmage_round_win():
+func rmage_round_win():
 	p1_score += 1
 	$HUD.round_win(0)
 	
 	if p1_score == ROUND_WINS_MAX:
-		victory(0)
+		victory()
 		$HUD.victory(0)
 	
 	await get_tree().create_timer(2).timeout
 	new_round()
 	
-func wmage_round_win():
+func bmage_round_win():
 	p2_score += 1
 	$HUD.round_win(1)
 	
 	if p2_score == ROUND_WINS_MAX:
-		victory(1)
+		victory()
 		$HUD.victory(1)
 
 	await get_tree().create_timer(2).timeout
 	start_round()
 
 func start_round():
+	$Rmage.start(RMAGE_START_POS)
 	$Bmage.start(BMAGE_START_POS)
-	$Wmage.start(WMAGE_START_POS)
 
-func victory(player):
+func victory():
 	$MainMusic.stop()
 	$VictoryTheme.play()
 
