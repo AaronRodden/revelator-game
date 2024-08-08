@@ -54,6 +54,23 @@ func _ready():
 		
 	$MainMenu/MainMenuMusic.stop()
 	
+func _process(_delta):
+	if Global.start_flag:
+		if Input.is_action_just_released("start"):
+			_on_pause_button_pressed()
+	#if Global.pause_flag:
+		#$ResumeButton.grab_focus()
+		#if Input.is_action_just_released("down_spell"):
+			#$MainMenuButton.grab_focus()
+		#if Input.is_action_just_released("up_spell"):
+			#$ResumeButton.grab_focus()
+		#
+		## P2 Menuing
+		#if Input.is_action_just_released("down_spell_p2"):
+			#$MainMenuButton.grab_focus()
+		#if Input.is_action_just_released("up_spell_p2"):
+			#$ResumeButton.grab_focus()
+	
 func new_round():
 	$Rmage.controller_lock = true
 	$Bmage.controller_lock = true
@@ -76,6 +93,7 @@ func new_round():
 	
 func new_game():
 	current_song = null # new song
+	$TrainingModeMusic.stop()
 	start_music()
 	new_round()
 	
@@ -83,10 +101,7 @@ func new_game():
 	$Bmage.hit.connect(rmage_round_win)
 	
 func start_training_mode():
-	current_song = null # new song
-	# TODO: Add Training mode music
-	#start_music()
-	#new_round()
+	$TrainingModeMusic.play()
 	
 	$Rmage.start(RMAGE_START_POS)
 	$Bmage.start(BMAGE_START_POS)
@@ -111,6 +126,10 @@ func rmage_round_win():
 	if p1_score == ROUND_WINS_MAX:
 		victory()
 		$HUD.victory(0)
+		# Basic victory condition logic, return to main menu
+		await get_tree().create_timer(8).timeout
+		get_tree().change_scene_to_file("res://main_menu.tscn")
+		return
 	
 	await get_tree().create_timer(2).timeout
 	new_round()
@@ -122,6 +141,10 @@ func bmage_round_win():
 	if p2_score == ROUND_WINS_MAX:
 		victory()
 		$HUD.victory(1)
+		# Basic victory condition logic, return to main menu
+		await get_tree().create_timer(8).timeout
+		get_tree().change_scene_to_file("res://main_menu.tscn")
+		
 
 	await get_tree().create_timer(2).timeout
 	start_round()
@@ -144,3 +167,11 @@ func start_music():
 
 func _on_audio_stream_player_finished():
 	start_music()
+
+# BUG: When leaving pause menu game recognizes cross / B input
+# Pause Menu Functionallity
+func _on_pause_button_pressed():
+	$PauseMenu.visible = true
+	$PauseMenu/ButtonContainer/ResumeButton.grab_focus()
+	Global.pause_flag = true
+	get_tree().paused = true

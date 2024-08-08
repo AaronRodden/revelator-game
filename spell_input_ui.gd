@@ -32,7 +32,7 @@ var p2_face_buttons = ["a", "b", "x", "y"]
 
 var h_offset = 0.0
 
-func new_spell_input_ui(spell_input: String, player: int):
+func new_spell_input_ui(spell_input: String):
 	var new_spell_input_ui = SpellInputUI.new()
 	new_spell_input_ui.spell_texture = spell_input
 	new_spell_input_ui.h_offset = h_offset

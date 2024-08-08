@@ -53,7 +53,7 @@ func _process(delta):
 		return
 	
 	# Player Movement
-	var velocity = Vector2.ZERO # The player's movement vector.
+	velocity = Vector2.ZERO # The player's movement vector.
 	if Input.is_action_pressed("right_move_p2"):
 		velocity.x += 1
 	if Input.is_action_pressed("left_move_p2"):
@@ -135,7 +135,7 @@ func start(pos):
 	$CollisionShape2D.disabled = false
 	$CollisionShape2D.set_deferred("disabled", false)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	move_and_collide(Vector2(0, 0)) # Move down 1 pixel per physics frame
 
 # TODO: Add hit sound FX

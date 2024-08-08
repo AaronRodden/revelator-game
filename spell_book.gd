@@ -1,7 +1,6 @@
 #class_name SpellBook
 extends Sprite2D
 
-var spell_type
 var curr_spell
 
 var Fireball = preload("res://fireball.tscn")
@@ -16,11 +15,6 @@ var spell_queue = []
 
 # ** TODO ** Much of the P1 v P2 logic is baked into this script as well as Rmage / Bage.
 # When a refactor comes this script will need to be looked at as well
-
-func _instantiate_fireball(caster):
-	var new_spell = Fireball.instantiate()
-	new_spell.set_caster(caster)
-	return new_spell
 
 func new_spell(spell_type, caster):
 	# Check if there is a spell already loaded up, null it if so
@@ -106,7 +100,7 @@ func cast_spell(lookvector, caster):
 	spell_queue = []
 	curr_spell = null
 	
-func _process(delta):
+func _process(_delta):
 	pass
 
 func start():

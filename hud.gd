@@ -19,20 +19,24 @@ func _ready():
 	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if Input.is_action_just_released("start"):
-		_on_start_game()
-		start_game.emit()
+func _process(_delta):
+	if Global.start_flag == false:
+		if Input.is_action_just_released("start"):
+			_on_start_game()
+			start_game.emit()
+			Global.start_flag = true
+	else:
+		pass
 
 
 func spell_display(input, player):
 	var new_spell_input_ui
 	if player == 0:
-		new_spell_input_ui = $P1SpellInputUI.new_spell_input_ui(input, player)
+		new_spell_input_ui = $P1SpellInputUI.new_spell_input_ui(input)
 		add_child(new_spell_input_ui)
 		p1_input_display.append(new_spell_input_ui)
 	elif player == 1:
-		new_spell_input_ui = $P2SpellInputUI.new_spell_input_ui(input, player)
+		new_spell_input_ui = $P2SpellInputUI.new_spell_input_ui(input)
 		add_child(new_spell_input_ui)
 		p2_input_display.append(new_spell_input_ui)
 	

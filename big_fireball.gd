@@ -1,4 +1,3 @@
-class_name BigFireball
 extends Area2D
 
 signal hit
@@ -34,8 +33,8 @@ func set_caster(current_caster):
 	elif caster == "Bmage":
 		pass
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	emit_signal("hit")
 
-func _on_area_entered(area):
+func _on_area_entered(_area):
 	emit_signal("hit")

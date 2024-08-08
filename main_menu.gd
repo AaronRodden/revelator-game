@@ -5,11 +5,13 @@ signal training_mode
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$HBoxContainer/VBoxContainer/VersusButton.grab_focus()
-	
 	$MainMenuMusic.play()
+	
+	# Reset Globals
+	Global.start_flag = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	# TODO: Add Menuing sound FX
 	# P1 Menuing
 	if Input.is_action_just_released("down_spell"):

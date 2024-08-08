@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bm2erb45ptmj5"]
+[gd_scene load_steps=10 format=3 uid="uid://bm2erb45ptmj5"]
 
 [ext_resource type="PackedScene" uid="uid://b2pgalkm1uevl" path="res://arena.tscn" id="1_o8sir"]
 [ext_resource type="Script" path="res://main.gd" id="1_v5b6b"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://bqmk6xo0vu5r" path="res://hud.tscn" id="3_a55rb"]
 [ext_resource type="PackedScene" uid="uid://creof7r0f43rs" path="res://wmage.tscn" id="5_jeu2w"]
 [ext_resource type="AudioStream" uid="uid://bve4tny10wumn" path="res://assets/soundfx/For Shovelry! (Boss Victory) - Shovel Knight [OST] [CzSnJ_1YVmY].mp3" id="6_4mu1f"]
+[ext_resource type="AudioStream" uid="uid://dafd8bnil2gfr" path="res://assets/[Guilty gear X]Blue water blue sky(May's theme) 8-bit cover.mp3" id="6_6ecsk"]
 [ext_resource type="PackedScene" uid="uid://b47kgy4t7hhhj" path="res://main_menu.tscn" id="7_1uvis"]
+[ext_resource type="Script" path="res://PauseMenu.gd" id="9_540e4"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_v5b6b")
@@ -24,6 +26,7 @@ position = Vector2(684, 121)
 [node name="MainMusic" type="AudioStreamPlayer" parent="."]
 
 [node name="TrainingModeMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_6ecsk")
 
 [node name="VictoryTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_4mu1f")
@@ -31,5 +34,48 @@ stream = ExtResource("6_4mu1f")
 [node name="MainMenu" parent="." instance=ExtResource("7_1uvis")]
 visible = false
 
+[node name="PauseButton" type="Button" parent="."]
+visible = false
+offset_left = 2.0
+offset_top = 84.0
+offset_right = 73.0
+offset_bottom = 143.0
+rotation = -0.00559542
+
+[node name="PauseMenu" type="MarginContainer" parent="."]
+process_mode = 2
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.0
+offset_top = -46.0
+offset_right = 60.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_540e4")
+
+[node name="ButtonContainer" type="VBoxContainer" parent="PauseMenu"]
+layout_mode = 2
+theme_override_constants/separation = 85
+
+[node name="ResumeButton" type="Button" parent="PauseMenu/ButtonContainer"]
+process_mode = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Resume Game"
+
+[node name="MainMenuButton" type="Button" parent="PauseMenu/ButtonContainer"]
+process_mode = 2
+layout_mode = 2
+text = "Main Menu"
+
 [connection signal="start_game" from="HUD" to="HUD" method="_on_start_game"]
 [connection signal="finished" from="MainMusic" to="." method="_on_audio_stream_player_finished"]
+[connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ButtonContainer/ResumeButton" to="PauseMenu" method="_on_resume_button_pressed"]
+[connection signal="pressed" from="PauseMenu/ButtonContainer/MainMenuButton" to="PauseMenu" method="_on_main_menu_button_pressed"]
