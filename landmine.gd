@@ -19,15 +19,23 @@ func _process(_delta):
 func cast(_lookvector):
 	# set velocity at time of cast then pass too process to carry it to end of screen
 	castFlag = true
+	$LandminePlace.play()
 
 func set_caster(current_caster):
 	caster = current_caster
 
 func _on_body_entered(body):
-	if body.name != caster:
+	pass
+	#if body.name != caster:
+		#$LandmineSprite.visible = false
+		#$ExplosionSprite.visible = true
+		#$LandmineHit.play()
+		#emit_signal("hit")
+
+func _on_area_entered(area):
+	if not area.name.contains(caster):
 		$LandmineSprite.visible = false
 		$ExplosionSprite.visible = true
+		$LandmineHit.play()
 		emit_signal("hit")
-
-func _on_area_entered(_area):
 	emit_signal("hit")

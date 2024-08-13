@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://drdlnm8aqwg4p"]
+[gd_scene load_steps=8 format=3 uid="uid://drdlnm8aqwg4p"]
 
 [ext_resource type="Script" path="res://homing_arrow.gd" id="1_fmwu4"]
 [ext_resource type="Texture2D" uid="uid://d1ji462821ejd" path="res://assets/homing_arrow.png" id="1_yv140"]
+[ext_resource type="AudioStream" uid="uid://bu8r3jjk36fa6" path="res://assets/arrow_shoot.wav" id="3_s01ph"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4gj3f"]
 atlas = ExtResource("1_yv140")
@@ -38,3 +39,6 @@ sprite_frames = SubResource("SpriteFrames_gnpga")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, -13)
 shape = SubResource("RectangleShape2D_hap5m")
+
+[node name="ArrowCast" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_s01ph")

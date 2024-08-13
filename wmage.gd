@@ -14,6 +14,8 @@ var curr_spell
 @export var speed = 225
 var lookvector = Vector2.ZERO
 var input_buffer = []
+var input_count = 0
+var max_input_count = 4
 
 var bmage_moves = {
 	"light_fireball": ["down", "right", "y"], 
@@ -90,34 +92,44 @@ func _process(delta):
 		emit_signal("spell_cast")
 		$SpellBook.cast_spell(lookvector, self.name)
 		input_buffer = []
+		input_count = 0
 		
 	
 	# Player Spellcasting
-	if Input.is_action_just_released("right_spell_p2"):
-		input_buffer.push_back("right")
-		emit_signal("spell_input", "right_p2")
-	if Input.is_action_just_released("left_spell_p2"):
-		input_buffer.push_back("left")
-		emit_signal("spell_input", "left_p2")
-	if Input.is_action_just_released("down_spell_p2"):
-		input_buffer.push_back("down")
-		emit_signal("spell_input", "down_p2")
-	if Input.is_action_just_released("up_spell_p2"):
-		input_buffer.push_back("up")
-		emit_signal("spell_input", "up_p2")
-		
-	if Input.is_action_just_released("a"):
-		input_buffer.push_back("a")
-		emit_signal("spell_input", "a")
-	if Input.is_action_just_released("b"):
-		input_buffer.push_back("b")
-		emit_signal("spell_input", "b")
-	if Input.is_action_just_released("x"):
-		input_buffer.push_back("x")
-		emit_signal("spell_input", "x")
-	if Input.is_action_just_released("y"):
-		input_buffer.push_back("y")
-		emit_signal("spell_input", "y")
+	if input_count < max_input_count:
+		if Input.is_action_just_released("right_spell_p2"):
+			input_buffer.push_back("right")
+			emit_signal("spell_input", "right_p2")
+			input_count += 1
+		if Input.is_action_just_released("left_spell_p2"):
+			input_buffer.push_back("left")
+			emit_signal("spell_input", "left_p2")
+			input_count += 1
+		if Input.is_action_just_released("down_spell_p2"):
+			input_buffer.push_back("down")
+			emit_signal("spell_input", "down_p2")
+			input_count += 1
+		if Input.is_action_just_released("up_spell_p2"):
+			input_buffer.push_back("up")
+			emit_signal("spell_input", "up_p2")
+			input_count += 1
+			
+		if Input.is_action_just_released("a"):
+			input_buffer.push_back("a")
+			emit_signal("spell_input", "a")
+			input_count += 1
+		if Input.is_action_just_released("b"):
+			input_buffer.push_back("b")
+			emit_signal("spell_input", "b")
+			input_count += 1
+		if Input.is_action_just_released("x"):
+			input_buffer.push_back("x")
+			emit_signal("spell_input", "x")
+			input_count += 1
+		if Input.is_action_just_released("y"):
+			input_buffer.push_back("y")
+			emit_signal("spell_input", "y")
+			input_count += 1
 	
 	for move in bmage_moves:
 		if bmage_moves[move] == input_buffer: 
@@ -129,9 +141,9 @@ func start(pos):
 	position = pos
 	show()
 	if Global.training_mode: # Hurtboxes turned off
-		$Hurtbox.get_child(0).set_deferred("disabled", true)
+		$WmageHurtbox.get_child(0).set_deferred("disabled", true)
 	else: # Hurtboxes turned on
-		$Hurtbox.get_child(0).set_deferred("disabled", false)
+		$WmageHurtbox.get_child(0).set_deferred("disabled", false)
 	$CollisionShape2D.disabled = false
 	$CollisionShape2D.set_deferred("disabled", false)
 
@@ -143,5 +155,6 @@ func _on_hurtbox_area_entered(area):
 	if area.caster != self.name and area.caster != null:
 		hide()  # Player disappears after being hit.
 		hit.emit()
+		$HitSound.play()
 		$CollisionShape2D.set_deferred("disabled", true)
-		$Hurtbox.get_child(0).set_deferred("disabled", true)
+		$WmageHurtbox.get_child(0).set_deferred("disabled", true)

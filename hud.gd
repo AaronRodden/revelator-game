@@ -80,5 +80,4 @@ func round_countdown(time):
 		$RoundStartTimer.visible = false
 
 func _on_start_game():
-	$Button.pressed
 	$Button.visible = false

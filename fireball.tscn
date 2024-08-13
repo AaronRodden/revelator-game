@@ -1,9 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://io0mf4y864i1"]
+[gd_scene load_steps=18 format=3 uid="uid://io0mf4y864i1"]
 
 [ext_resource type="Script" path="res://fireball.gd" id="1_uya36"]
 [ext_resource type="Texture2D" uid="uid://c6jvupd1u82j2" path="res://assets/magic_die_red.png" id="2_2fba1"]
 [ext_resource type="Texture2D" uid="uid://48dfw5hfaydq" path="res://assets/magic_die_blue.png" id="3_xbbev"]
 [ext_resource type="Texture2D" uid="uid://dnkov0367tw2a" path="res://assets/fireball_1.png" id="4_6wk60"]
+[ext_resource type="AudioStream" uid="uid://4155txr1wtcp" path="res://assets/hitHurt.wav" id="5_phtp2"]
+[ext_resource type="AudioStream" uid="uid://dneq18at24ybw" path="res://assets/laserShoot.wav" id="6_eogxn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gk44x"]
 atlas = ExtResource("2_2fba1")
@@ -108,3 +110,9 @@ texture = ExtResource("4_6wk60")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.76334, -0.476917)
 shape = SubResource("CircleShape2D_2gvig")
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_phtp2")
+
+[node name="FireballCast" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_eogxn")

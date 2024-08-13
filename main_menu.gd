@@ -17,7 +17,7 @@ func _process(_delta):
 	if Input.is_action_just_released("down_spell"):
 		focus_neighbor_bottom = NodePath("HBoxContainer/VBoxContainer/TrainingButton")
 	if Input.is_action_just_released("up_spell"):
-		focus_neighbor_top = NodePath("HBoxContainer/VBoxContainer/VersusButton")	
+		focus_neighbor_top = NodePath("HBoxContainer/VBoxContainer/VersusButton")
 		
 	# P2 Menuing
 	if Input.is_action_just_released("down_spell_p2"):

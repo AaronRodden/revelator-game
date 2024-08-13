@@ -14,6 +14,8 @@ var curr_spell
 @export var speed = 225
 var lookvector = Vector2.ZERO
 var input_buffer = []
+var input_count = 0
+var max_input_count = 4
 
 var rmage_moves = {
 	"light_fireball": ["down", "right", "square"], 
@@ -83,34 +85,44 @@ func _process(delta):
 		emit_signal("spell_cast")
 		$SpellBook.cast_spell(lookvector, self.name)
 		input_buffer = []
+		input_count = 0
 		
 	
 	# Player Spellcasting
-	if Input.is_action_just_released("right_spell"):
-		input_buffer.push_back("right")
-		emit_signal("spell_input", "right")
-	if Input.is_action_just_released("left_spell"):
-		input_buffer.push_back("left")
-		emit_signal("spell_input", "left")
-	if Input.is_action_just_released("down_spell"):
-		input_buffer.push_back("down")
-		emit_signal("spell_input", "down")
-	if Input.is_action_just_released("up_spell"):
-		input_buffer.push_back("up")
-		emit_signal("spell_input", "up")
+	if input_count < max_input_count:
+		if Input.is_action_just_released("right_spell"):
+			input_buffer.push_back("right")
+			emit_signal("spell_input", "right")
+			input_count += 1
+		if Input.is_action_just_released("left_spell"):
+			input_buffer.push_back("left")
+			emit_signal("spell_input", "left")
+			input_count += 1
+		if Input.is_action_just_released("down_spell"):
+			input_buffer.push_back("down")
+			emit_signal("spell_input", "down")
+			input_count += 1
+		if Input.is_action_just_released("up_spell"):
+			input_buffer.push_back("up")
+			emit_signal("spell_input", "up")
+			input_count += 1
 		
-	if Input.is_action_just_released("triangle"):
-		input_buffer.push_back("triangle")
-		emit_signal("spell_input", "triangle")
-	if Input.is_action_just_released("circle"):
-		input_buffer.push_back("circle")
-		emit_signal("spell_input", "circle")
-	if Input.is_action_just_released("cross"):
-		input_buffer.push_back("cross")
-		emit_signal("spell_input", "cross")
-	if Input.is_action_just_released("square"):
-		input_buffer.push_back("square")
-		emit_signal("spell_input", "square")
+		if Input.is_action_just_released("triangle"):
+			input_buffer.push_back("triangle")
+			emit_signal("spell_input", "triangle")
+			input_count += 1
+		if Input.is_action_just_released("circle"):
+			input_buffer.push_back("circle")
+			emit_signal("spell_input", "circle")
+			input_count += 1
+		if Input.is_action_just_released("cross"):
+			input_buffer.push_back("cross")
+			emit_signal("spell_input", "cross")
+			input_count += 1
+		if Input.is_action_just_released("square"):
+			input_buffer.push_back("square")
+			emit_signal("spell_input", "square")
+			input_count += 1
 	
 	for move in rmage_moves:
 		if rmage_moves[move] == input_buffer: 
@@ -122,9 +134,9 @@ func start(pos):
 	position = pos
 	show()
 	if Global.training_mode: # Hurtboxes turned off
-		$Hurtbox.get_child(0).set_deferred("disabled", true)
+		$RmageHurtbox.get_child(0).set_deferred("disabled", true)
 	else: # Hurtboxes turned on
-		$Hurtbox.get_child(0).set_deferred("disabled", false)
+		$RmageHurtbox.get_child(0).set_deferred("disabled", false)
 	$CollisionShape2D.disabled = false
 	$CollisionShape2D.set_deferred("disabled", false)
 
@@ -136,5 +148,6 @@ func _on_hurtbox_area_entered(area):
 	if area.caster != self.name and area.caster != null:
 		hide()  # Player disappears after being hit.
 		hit.emit()
+		$HitSound.play()
 		$CollisionShape2D.set_deferred("disabled", true)
-		$Hurtbox.get_child(0).set_deferred("disabled", true)
+		$RmageHurtbox.get_child(0).set_deferred("disabled", true)

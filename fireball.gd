@@ -25,6 +25,7 @@ func cast(lookvector):
 	# set velocity at time of cast then pass too process to carry it to end of screen
 	velocity = lookvector
 	castFlag = true
+	$FireballCast.play()
 
 func set_caster(current_caster):
 	caster = current_caster
@@ -35,6 +36,8 @@ func set_caster(current_caster):
 
 func _on_body_entered(_body):
 	emit_signal("hit")
+	$HitSound.play()
 
 func _on_area_entered(_area):
 	emit_signal("hit")
+	$HitSound.play()

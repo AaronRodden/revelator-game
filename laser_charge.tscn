@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctebgibjmg1fu"]
+[gd_scene load_steps=12 format=3 uid="uid://ctebgibjmg1fu"]
 
 [ext_resource type="Texture2D" uid="uid://c1nl6xyotwj13" path="res://assets/laser_charge.png" id="1_kn41q"]
 [ext_resource type="Script" path="res://laser_charge.gd" id="1_p8oc0"]
 [ext_resource type="Texture2D" uid="uid://cxog7o8wyb2wp" path="res://assets/laser_blue.png" id="2_br0bq"]
+[ext_resource type="AudioStream" uid="uid://b6wvsyyqeqij5" path="res://assets/triple_laser_shoot.wav" id="4_6rebq"]
+[ext_resource type="AudioStream" uid="uid://byu4xjdhqxqje" path="res://assets/charge_up.wav" id="5_rgspj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5e4g1"]
 atlas = ExtResource("1_kn41q")
@@ -73,3 +75,11 @@ texture = ExtResource("2_br0bq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_2vop5")
+
+[node name="LaserCast" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_6rebq")
+volume_db = -0.5
+
+[node name="LaserCharge" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_rgspj")
+volume_db = -0.5

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b56oto3byd75c"]
+[gd_scene load_steps=10 format=3 uid="uid://b56oto3byd75c"]
 
 [ext_resource type="Texture2D" uid="uid://ho28ruwbqbtw" path="res://assets/fireball.png" id="1_4muy4"]
 [ext_resource type="Script" path="res://big_fireball.gd" id="1_7iqmn"]
+[ext_resource type="AudioStream" uid="uid://cnuc1l2orbvv0" path="res://assets/big_fireball.wav" id="3_q3yik"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hrr4e"]
 atlas = ExtResource("1_4muy4")
@@ -55,3 +56,6 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(51, 91.1875)
 shape = SubResource("RectangleShape2D_l1l2x")
+
+[node name="FireballCast" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_q3yik")

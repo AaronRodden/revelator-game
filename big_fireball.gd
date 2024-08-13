@@ -25,6 +25,7 @@ func cast(lookvector):
 	# set velocity at time of cast then pass too process to carry it to end of screen
 	velocity = lookvector
 	castFlag = true
+	$FireballCast.play()
 
 func set_caster(current_caster):
 	caster = current_caster
