@@ -4,6 +4,7 @@ signal hit
 signal spell_input
 signal spell_completed 
 signal spell_cast
+signal auto_attack_cast
 
 var screen_size
 var velocity
@@ -16,6 +17,10 @@ var lookvector = Vector2.ZERO
 var input_buffer = []
 var input_count = 0
 var max_input_count = 4
+
+# Auto Attack timer and variables
+var auto_attack_timer = Timer.new()
+var auto_attack_flag = true
 
 var bmage_moves = {
 	"light_fireball": ["down", "right", "y"], 
@@ -38,15 +43,21 @@ var bmage_moves = {
 # R-stick: aiming
 # D-Pad: Spell Casting Directional Inputs
 # Face Buttons: Spell Casting Button Inputs
-# R1: Ward / Shield
+# R1: Auto-attack
 # R2: Shoot Preped Spell
 # L1: Dodge
 # L2: <>
 
-	# Called when the node enters the scene tree for the first time.
+func _on_auto_attack_timeout():
+	auto_attack_flag = true
+
+# Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
 	spell_book_position = $SpellBook.position
+	auto_attack_timer.connect("timeout", _on_auto_attack_timeout, 0)
+	auto_attack_timer.wait_time = Global.AUTO_ATTACK_TIMEOUT
+	add_child(auto_attack_timer)
 
 
 func _process(delta):
@@ -93,6 +104,13 @@ func _process(delta):
 		$SpellBook.cast_spell(lookvector, self.name)
 		input_buffer = []
 		input_count = 0
+		
+	if Input.is_action_just_pressed("auto_attack_p2"):
+		if auto_attack_flag:
+			$SpellBook.cast_auto_attack(lookvector, self.name)
+			auto_attack_flag = false
+			emit_signal("auto_attack_cast")
+			auto_attack_timer.start()
 		
 	
 	# Player Spellcasting

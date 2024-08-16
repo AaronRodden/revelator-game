@@ -1,45 +1,265 @@
-[gd_scene load_steps=7 format=3 uid="uid://b47kgy4t7hhhj"]
+[gd_scene load_steps=42 format=3 uid="uid://b47kgy4t7hhhj"]
 
-[ext_resource type="Texture2D" uid="uid://bfwmtkx2pk43" path="res://icon.svg" id="1_7rjmk"]
-[ext_resource type="Texture2D" uid="uid://bnug0v1xhkxr1" path="res://assets/labels/Wizard Battle_ Revelator.png" id="1_bwxlj"]
 [ext_resource type="Script" path="res://main_menu.gd" id="1_mw2fn"]
+[ext_resource type="Texture2D" uid="uid://c6jvupd1u82j2" path="res://assets/magic_die_red.png" id="2_5c0nj"]
+[ext_resource type="Texture2D" uid="uid://ttvfn61ntepu" path="res://assets/old-paper-texture-600nw-758024551.png" id="2_6fb6m"]
 [ext_resource type="Texture2D" uid="uid://crblp2i45fxww" path="res://assets/labels/Versus.png" id="2_38y2d"]
+[ext_resource type="Texture2D" uid="uid://dkg02qj736cjo" path="res://assets/Iconocast!.png" id="3_0m66j"]
 [ext_resource type="Texture2D" uid="uid://biomutlac5kd3" path="res://assets/labels/Training.png" id="3_sl0os"]
+[ext_resource type="Texture2D" uid="uid://48dfw5hfaydq" path="res://assets/magic_die_blue.png" id="4_7x2mh"]
+[ext_resource type="Texture2D" uid="uid://ho28ruwbqbtw" path="res://assets/fireball.png" id="5_nessx"]
+[ext_resource type="Texture2D" uid="uid://nm6qkxwitc5o" path="res://assets/WizardHeads_tiny.png" id="6_3ktqr"]
 [ext_resource type="AudioStream" uid="uid://cvpe8vagrnxeo" path="res://assets/Undernight In-birth Exe：Late(st)(arcade) 8bit - Character Select - Looped.mp3" id="6_w2gpk"]
+[ext_resource type="Texture2D" uid="uid://dyomrvi3p1wmh" path="res://assets/InfoBlock.png" id="9_x17cj"]
+[ext_resource type="Texture2D" uid="uid://c1nl6xyotwj13" path="res://assets/laser_charge.png" id="12_0r073"]
+[ext_resource type="Texture2D" uid="uid://d1ji462821ejd" path="res://assets/homing_arrow.png" id="13_qdy7m"]
+[ext_resource type="Texture2D" uid="uid://b6no0l8pqigp" path="res://assets/landmine.png" id="14_8ug8j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gk44x"]
+atlas = ExtResource("2_5c0nj")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_owrgy"]
+atlas = ExtResource("2_5c0nj")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfkxc"]
+atlas = ExtResource("2_5c0nj")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_prcl4"]
+atlas = ExtResource("2_5c0nj")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7rsde"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gk44x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_owrgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfkxc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_prcl4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g24r3"]
+atlas = ExtResource("4_7x2mh")
+region = Rect2(0, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv82c"]
+atlas = ExtResource("4_7x2mh")
+region = Rect2(50, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlshx"]
+atlas = ExtResource("4_7x2mh")
+region = Rect2(100, 0, 50, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lwcr6"]
+atlas = ExtResource("4_7x2mh")
+region = Rect2(150, 0, 50, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ixr8f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g24r3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv82c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nlshx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lwcr6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_au11l"]
+atlas = ExtResource("5_nessx")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygcro"]
+atlas = ExtResource("5_nessx")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cetv1"]
+atlas = ExtResource("5_nessx")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84qhe"]
+atlas = ExtResource("5_nessx")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v8sn8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_au11l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygcro")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cetv1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84qhe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gj3f"]
+atlas = ExtResource("13_qdy7m")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e3mt"]
+atlas = ExtResource("13_qdy7m")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xc2tb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gj3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e3mt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0skm0"]
+atlas = ExtResource("14_8ug8j")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jiox"]
+atlas = ExtResource("14_8ug8j")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajy56"]
+atlas = ExtResource("14_8ug8j")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rmje3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0skm0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jiox")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajy56")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5e4g1"]
+atlas = ExtResource("12_0r073")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lphaa"]
+atlas = ExtResource("12_0r073")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7jy5"]
+atlas = ExtResource("12_0r073")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_inlo3"]
+atlas = ExtResource("12_0r073")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cooxa"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5e4g1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lphaa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7jy5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_inlo3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="MainMenu" type="MarginContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-offset_top = 5.0
-offset_right = 925.0
-offset_bottom = 544.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -42.0
+offset_top = -30.0
+offset_right = 2147.0
+offset_bottom = 1231.0
 scale = Vector2(0.555, 0.54)
-size_flags_horizontal = 6
-size_flags_vertical = 3
-theme_override_constants/margin_left = 120
+theme_override_constants/margin_left = 160
 theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 120
+theme_override_constants/margin_right = 160
 theme_override_constants/margin_bottom = 80
 script = ExtResource("1_mw2fn")
 
+[node name="PaperTexture" type="Sprite2D" parent="."]
+position = Vector2(1062.19, 645.37)
+scale = Vector2(3.93703, 3.18981)
+texture = ExtResource("2_6fb6m")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 405
+theme_override_constants/separation = 200
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
-theme_override_constants/separation = 155
+theme_override_constants/separation = 105
 alignment = 1
 
 [node name="Logo" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("1_bwxlj")
+texture = ExtResource("3_0m66j")
+
+[node name="MagicMissleDieRed" type="AnimatedSprite2D" parent="HBoxContainer/VBoxContainer"]
+position = Vector2(65.5856, -108)
+scale = Vector2(3.05997, 3.05997)
+sprite_frames = SubResource("SpriteFrames_7rsde")
+autoplay = "default"
+
+[node name="MagicMissleDieBlue" type="AnimatedSprite2D" parent="HBoxContainer/VBoxContainer"]
+position = Vector2(1020.54, -113.556)
+scale = Vector2(3.06, 3.06)
+sprite_frames = SubResource("SpriteFrames_ixr8f")
+autoplay = "default"
+
+[node name="Fireball" type="AnimatedSprite2D" parent="HBoxContainer/VBoxContainer"]
+position = Vector2(532.252, -108)
+rotation = 1.5708
+scale = Vector2(5.3949, 5.3949)
+sprite_frames = SubResource("SpriteFrames_v8sn8")
+autoplay = "default"
 
 [node name="Versus" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
 visible = false
@@ -50,6 +270,8 @@ texture = ExtResource("2_38y2d")
 
 [node name="VersusButton" type="Button" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "Versus"
 
@@ -62,18 +284,42 @@ texture = ExtResource("3_sl0os")
 
 [node name="TrainingButton" type="Button" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "Training"
 
-[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
+theme_override_constants/separation = 15
 
-[node name="SplashArt" type="TextureRect" parent="HBoxContainer/CenterContainer"]
+[node name="SplashArt" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
 layout_mode = 2
-texture = ExtResource("1_7rjmk")
+texture = ExtResource("6_3ktqr")
+
+[node name="InfoBlock" type="TextureRect" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("9_x17cj")
 
 [node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_w2gpk")
+
+[node name="HomingArrow" type="AnimatedSprite2D" parent="."]
+position = Vector2(1066.67, 1094.44)
+scale = Vector2(5.33033, 5.33033)
+sprite_frames = SubResource("SpriteFrames_xc2tb")
+
+[node name="LandmineSprite" type="AnimatedSprite2D" parent="HomingArrow"]
+position = Vector2(-144.676, -1.04225)
+scale = Vector2(0.523768, 0.523768)
+sprite_frames = SubResource("SpriteFrames_rmje3")
+autoplay = "default"
+
+[node name="LaserCharge" type="AnimatedSprite2D" parent="."]
+position = Vector2(681.081, 1088.89)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_cooxa")
+autoplay = "default"
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/VersusButton" to="." method="_on_versus_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/TrainingButton" to="." method="_on_training_button_pressed"]

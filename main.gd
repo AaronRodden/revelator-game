@@ -39,10 +39,12 @@ func _ready():
 	
 	$Rmage.connect("spell_input", $HUD.spell_display.bind(0), 0)
 	$Rmage.connect("spell_cast", $HUD.clear_spell_inputs.bind(0), 0)
+	$Rmage.connect("auto_attack_cast", $HUD.auto_attack_timer_UI.bind(0), 0)
 
 	
 	$Bmage.connect("spell_input", $HUD.spell_display.bind(1), 0)
 	$Bmage.connect("spell_cast", $HUD.clear_spell_inputs.bind(1), 0)
+	$Bmage.connect("auto_attack_cast", $HUD.auto_attack_timer_UI.bind(1), 0)
 
 
 	$HUD.start_game.connect($Arena.set_arena)

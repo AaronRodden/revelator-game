@@ -8,6 +8,7 @@ var BigFireball = preload("res://big_fireball.tscn")
 var LaserCharge = preload("res://laser_charge.tscn")
 var Landmine = preload("res://landmine.tscn")
 var HomingArrow = preload("res://homing_arrow.tscn")
+var AutoAttack = preload("res://auto_attack.tscn")
 var LIGHT_FIREBALL_COUNT = 3
 var MEDIUM_FIREBALL_COUNT = 3
 
@@ -99,7 +100,15 @@ func cast_spell(lookvector, caster):
 				return # Allows for re-direction
 	spell_queue = []
 	curr_spell = null
-	
+
+# The auto attack should bypass the spell queue and hense have its own function
+func cast_auto_attack(lookvector, caster):
+	var auto = AutoAttack.instantiate()
+	auto.set_caster(caster)
+	add_child(auto)
+	auto.cast(lookvector)
+	auto.reparent(get_parent().get_parent())
+
 func _process(_delta):
 	pass
 

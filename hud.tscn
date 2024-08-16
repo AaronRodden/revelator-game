@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bqmk6xo0vu5r"]
+[gd_scene load_steps=23 format=3 uid="uid://bqmk6xo0vu5r"]
 
 [ext_resource type="Texture2D" uid="uid://b27fsnydq1xdi" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_dpad_right.svg" id="1_mvk6c"]
 [ext_resource type="Script" path="res://hud.gd" id="1_pj8pv"]
@@ -19,6 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://c3bly0g8b058s" path="res://assets/Switch Button Icons and Controls/Buttons Full Solid/White/SVG/Pro D-Pad Left.svg" id="15_q13fe"]
 [ext_resource type="Texture2D" uid="uid://nqp5jnuajqkd" path="res://assets/Switch Button Icons and Controls/Buttons Full Solid/White/SVG/Pro D-Pad Right.svg" id="16_v0iy5"]
 [ext_resource type="Texture2D" uid="uid://kcrxwpqk06st" path="res://assets/Switch Button Icons and Controls/Buttons Full Solid/White/SVG/Pro D-Pad Up.svg" id="17_t6l0o"]
+[ext_resource type="Texture2D" uid="uid://dpnpw575sgjd8" path="res://assets/progress_bar_under.png" id="20_h2gh7"]
+[ext_resource type="Texture2D" uid="uid://3d1d265chdob" path="res://assets/progress_bar_over.png" id="21_a6rpb"]
+[ext_resource type="Texture2D" uid="uid://b0ou54r70tslp" path="res://assets/progress_bar_progress.png" id="22_m3td3"]
 
 [node name="HUD" type="Node"]
 script = ExtResource("1_pj8pv")
@@ -30,8 +33,8 @@ scale = Vector2(0.283333, 0.276451)
 texture = ExtResource("3_iipp0")
 
 [node name="MoveListBlue" type="Sprite2D" parent="."]
-position = Vector2(1016, 324)
-scale = Vector2(0.283, 0.276)
+position = Vector2(1016, 323.764)
+scale = Vector2(0.283, 0.276652)
 texture = ExtResource("4_1q3ee")
 
 [node name="spell_right" type="Sprite2D" parent="."]
@@ -198,3 +201,23 @@ offset_bottom = 129.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 64
 text = "3"
+
+[node name="P1AutoAttackCooldown" type="TextureProgressBar" parent="."]
+offset_left = 224.0
+offset_top = 112.0
+offset_right = 256.0
+offset_bottom = 144.0
+fill_mode = 4
+texture_under = ExtResource("20_h2gh7")
+texture_over = ExtResource("21_a6rpb")
+texture_progress = ExtResource("22_m3td3")
+
+[node name="P2AutoAttackCooldown" type="TextureProgressBar" parent="."]
+offset_left = 896.0
+offset_top = 112.0
+offset_right = 928.0
+offset_bottom = 144.0
+fill_mode = 4
+texture_under = ExtResource("20_h2gh7")
+texture_over = ExtResource("21_a6rpb")
+texture_progress = ExtResource("22_m3td3")

@@ -11,12 +11,32 @@ var p2_offset = 0.0
 var p1_score = 0
 var p2_score = 0
 
+# Auto Attack Timers
+var p1_auto_attack_timer = Timer.new()
+var p2_auto_attack_timer = Timer.new()
+var AUTO_ATTACK_PROGRESS_BAR_TRANSFORM = 66.7
+
 @export var spell_input_ui: PackedScene
+
+func _on_auto_attack_timeout(player):
+	if player == 0:
+		p1_auto_attack_timer.stop()
+	if player == 1:
+		p2_auto_attack_timer.stop()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	p1_auto_attack_timer.wait_time = Global.AUTO_ATTACK_TIMEOUT
+	p1_auto_attack_timer.connect("timeout", _on_auto_attack_timeout.bind(0), 0)
+	add_child(p1_auto_attack_timer)
+	p2_auto_attack_timer.wait_time = Global.AUTO_ATTACK_TIMEOUT
+	p2_auto_attack_timer.connect("timeout", _on_auto_attack_timeout.bind(1), 0)
+	add_child(p2_auto_attack_timer)
 	
+
+func _time_left_transform(time):
+	if time >= 1.5:
+		return 100
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -25,8 +45,8 @@ func _process(_delta):
 			_on_start_game()
 			start_game.emit()
 			Global.start_flag = true
-	else:
-		pass
+	$P1AutoAttackCooldown.value = p1_auto_attack_timer.time_left * AUTO_ATTACK_PROGRESS_BAR_TRANSFORM
+	$P2AutoAttackCooldown.value = p2_auto_attack_timer.time_left * AUTO_ATTACK_PROGRESS_BAR_TRANSFORM
 
 
 func spell_display(input, player):
@@ -78,6 +98,12 @@ func round_countdown(time):
 		$RoundStartTimer.text = "GO!!"
 		await get_tree().create_timer(1).timeout
 		$RoundStartTimer.visible = false
+
+func auto_attack_timer_UI(caster):
+	if caster == 0: # rmage auto attack
+		p1_auto_attack_timer.start()
+	elif caster == 1: # bmage auto attack
+		p2_auto_attack_timer.start()
 
 func _on_start_game():
 	$Button.visible = false
