@@ -30,6 +30,7 @@ animations = [{
 size = Vector2(64, 142)
 
 [node name="HomingArrow" type="Area2D"]
+scale = Vector2(1.25, 1.25)
 script = ExtResource("1_fmwu4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

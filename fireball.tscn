@@ -83,7 +83,7 @@ animations = [{
 radius = 12.5484
 
 [node name="Fireball" type="Area2D"]
-scale = Vector2(5.10395, 4.1936)
+scale = Vector2(6.125, 5.033)
 collision_mask = 2
 script = ExtResource("1_uya36")
 

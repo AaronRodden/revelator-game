@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 Global="*res://global.gd"
 
+[display]
+
+window/size/viewport_width=1920
+window/size/mode=3
+
 [input]
 
 ui_accept={

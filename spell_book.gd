@@ -67,7 +67,7 @@ func cast_spell(lookvector, caster):
 				for spell in spell_queue:
 					spell.cast(lookvector)
 					spell.reparent(get_parent().get_parent())
-					await get_tree().create_timer(0.05).timeout
+					await get_tree().create_timer(0.075).timeout
 		"medium_fireball":
 			var lookvector_copy = lookvector
 			for i in spell_queue.size():

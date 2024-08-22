@@ -211,11 +211,11 @@ animations = [{
 }]
 
 [node name="MainMenu" type="MarginContainer"]
-offset_left = -42.0
-offset_top = -30.0
-offset_right = 2147.0
-offset_bottom = 1231.0
-scale = Vector2(0.555, 0.54)
+offset_left = 15.965
+offset_top = -10.355
+offset_right = 2204.97
+offset_bottom = 1287.65
+scale = Vector2(0.85, 0.85)
 theme_override_constants/margin_left = 160
 theme_override_constants/margin_top = 80
 theme_override_constants/margin_right = 160

@@ -273,15 +273,16 @@ animations = [{
 size = Vector2(24, 36)
 
 [node name="Bmage" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
 collision_mask = 5
 script = ExtResource("1_4ek81")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(57.99, 80.453)
+position = Vector2(0.256611, 0.386276)
 shape = SubResource("RectangleShape2D_sd4oi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(58, 79)
+position = Vector2(0.266609, -1.06673)
 scale = Vector2(1.43333, 1.43333)
 sprite_frames = SubResource("SpriteFrames_bidxl")
 animation = &"walk"
@@ -295,13 +296,13 @@ frame = 3
 frame_progress = 0.0769816
 
 [node name="SpellBook" parent="." instance=ExtResource("5_31x02")]
-position = Vector2(57, 83)
+position = Vector2(-0.123, 0.583)
 scale = Vector2(0.183962, 0.183962)
 
 [node name="WmageHurtbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WmageHurtbox"]
-position = Vector2(58, 81)
+position = Vector2(0.266609, 0.933273)
 shape = SubResource("RectangleShape2D_qkcx4")
 
 [node name="HitSound" type="AudioStreamPlayer" parent="."]

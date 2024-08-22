@@ -44,16 +44,17 @@ animations = [{
 size = Vector2(74, 112)
 
 [node name="AutoAttack" type="Area2D"]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_1frvb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(52.5, 52.5)
+position = Vector2(1.33333, -12.6667)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_orgpt")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(51, 66)
+position = Vector2(-0.166668, 0.833328)
 shape = SubResource("RectangleShape2D_oq0pj")
 
 [node name="AutoAttackCast" type="AudioStreamPlayer" parent="."]

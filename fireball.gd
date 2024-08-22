@@ -6,7 +6,7 @@ var screen_size
 var caster 
 
 var velocity = Vector2(0.0, 0.0)
-var speed = 400
+var speed = 475
 var castFlag = false
 
 # Called when the node enters the scene tree for the first time.

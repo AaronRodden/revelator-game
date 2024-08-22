@@ -46,6 +46,7 @@ animations = [{
 radius = 50.04
 
 [node name="LaserCharge" type="Area2D"]
+scale = Vector2(1.25, 1.25)
 script = ExtResource("1_p8oc0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -57,7 +58,7 @@ autoplay = "default"
 visible = false
 position = Vector2(-44, -63)
 rotation = -0.575959
-scale = Vector2(5.02083, 5.02083)
+scale = Vector2(5.021, 3.347)
 texture = ExtResource("2_br0bq")
 
 [node name="Laser2" type="Sprite2D" parent="."]

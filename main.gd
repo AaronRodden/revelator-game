@@ -6,8 +6,8 @@ var current_song
 var MUSIC_PATH = "res://assets/music/"
 var rng = RandomNumberGenerator.new()
 
-var RMAGE_START_POS = Vector2(343, 457)
-var BMAGE_START_POS = Vector2(684, 121)
+var RMAGE_START_POS = Vector2(720, 904)
+var BMAGE_START_POS = Vector2(1184, 320)
 var ROUND_WINS_MAX = 3
 
 var p1_score = 0

@@ -12,7 +12,7 @@ var spell_book_position
 var curr_spell
 
 @export var controller_lock = false
-@export var speed = 225
+@export var speed = 275
 var lookvector = Vector2.ZERO
 var input_buffer = []
 var input_count = 0

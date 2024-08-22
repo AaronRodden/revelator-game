@@ -45,6 +45,7 @@ size = Vector2(176, 303.625)
 
 [node name="BigFireball" type="Area2D"]
 position = Vector2(-51, -67)
+scale = Vector2(1.25, 1.25)
 script = ExtResource("1_7iqmn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

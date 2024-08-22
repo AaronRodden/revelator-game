@@ -68,6 +68,7 @@ animations = [{
 radius = 80.0
 
 [node name="Landmine" type="Area2D"]
+scale = Vector2(1.15, 1.15)
 script = ExtResource("1_u5qhd")
 
 [node name="LandmineSprite" type="AnimatedSprite2D" parent="."]

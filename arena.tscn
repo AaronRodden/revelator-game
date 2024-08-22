@@ -20,7 +20,7 @@ size = Vector2(528, 20)
 size = Vector2(26, 464)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v0vb4"]
-size = Vector2(536, 20.25)
+size = Vector2(397.194, 20.25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_roiyx"]
 atlas = ExtResource("6_k4x3p")
@@ -167,38 +167,44 @@ animations = [{
 }]
 
 [node name="Arena" type="StaticBody2D"]
+scale = Vector2(1.285, 1.285)
 collision_layer = 4
 collision_mask = 0
 script = ExtResource("1_2nt1r")
 
 [node name="Grass15" type="Sprite2D" parent="."]
-position = Vector2(576, 324)
-scale = Vector2(1.8, 1.0125)
+position = Vector2(748.006, 423.346)
+scale = Vector2(2.33174, 1.32296)
 texture = ExtResource("2_juy2i")
 
 [node name="arena_sprite" type="Sprite2D" parent="."]
-position = Vector2(576, 376)
-scale = Vector2(1.68182, 1.27695)
+position = Vector2(748.03, 482.764)
+scale = Vector2(1.7033, 1.6203)
 texture = ExtResource("2_syq8k")
 
 [node name="ArenaCollisionLeft" type="CollisionShape2D" parent="."]
-position = Vector2(320, 372)
+position = Vector2(485.603, 466.926)
+scale = Vector2(1.395, 1.395)
 shape = SubResource("RectangleShape2D_tyiyi")
 
 [node name="ArenaCollisionBottom" type="CollisionShape2D" parent="."]
-position = Vector2(578, 610)
+position = Vector2(728.405, 778.21)
+scale = Vector2(1.395, 1.395)
 shape = SubResource("RectangleShape2D_7jjli")
 
 [node name="ArenaCollisionRight" type="CollisionShape2D" parent="."]
-position = Vector2(830, 384)
+position = Vector2(1002.33, 466.926)
+scale = Vector2(1.395, 1.395)
 shape = SubResource("RectangleShape2D_tt0qg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(576, 141)
+position = Vector2(734.63, 186.77)
+scale = Vector2(1.395, 1.395)
 shape = SubResource("RectangleShape2D_v0vb4")
 
 [node name="TrainingModeWall" type="CollisionShape2D" parent="."]
-position = Vector2(576, 371.75)
+position = Vector2(743.969, 460.7)
+scale = Vector2(1.395, 1.395)
 shape = SubResource("RectangleShape2D_v0vb4")
 disabled = true
 
@@ -212,43 +218,43 @@ texture = ExtResource("3_hny7g")
 stretch_mode = 1
 
 [node name="ArenaStand" type="Sprite2D" parent="."]
-position = Vector2(416, 78)
-scale = Vector2(1.563, 1.563)
+position = Vector2(538.475, 80.677)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("6_s55vx")
 
 [node name="ArenaStand2" type="Sprite2D" parent="."]
-position = Vector2(576, 78)
-scale = Vector2(1.5625, 1.5625)
+position = Vector2(737.697, 80.677)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("6_s55vx")
 
 [node name="ArenaStand3" type="Sprite2D" parent="."]
-position = Vector2(736, 78)
-scale = Vector2(1.563, 1.563)
+position = Vector2(936.918, 80.677)
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("6_s55vx")
 
 [node name="PurpleRobeFan" type="AnimatedSprite2D" parent="."]
-position = Vector2(368, 64)
+position = Vector2(490.475, 66.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_whgf5")
 animation = &"watch"
 autoplay = "watch"
 
 [node name="OrangeRobeFan" type="AnimatedSprite2D" parent="."]
-position = Vector2(360, 96)
+position = Vector2(482.475, 98.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_1yb48")
 animation = &"watch"
 autoplay = "watch"
 
 [node name="BlackRobeFan5" type="AnimatedSprite2D" parent="."]
-position = Vector2(416, 64)
+position = Vector2(538.475, 66.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_3nvbw")
 animation = &"watch"
 autoplay = "watch"
 
 [node name="GreenRobeFan" type="AnimatedSprite2D" parent="."]
-position = Vector2(408, 96)
+position = Vector2(530.475, 98.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_bcp78")
 animation = &"watch"
@@ -257,49 +263,49 @@ frame = 2
 frame_progress = 0.734988
 
 [node name="OrangeRobeFan3" type="AnimatedSprite2D" parent="."]
-position = Vector2(680, 40)
+position = Vector2(880.918, 42.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_1yb48")
 animation = &"watch"
 autoplay = "watch"
 
 [node name="BlackRobeFan" type="AnimatedSprite2D" parent="."]
-position = Vector2(464, 96)
+position = Vector2(586.475, 98.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_3nvbw")
 animation = &"watch"
 autoplay = "watch"
 
 [node name="PurpleRobeFan4" type="AnimatedSprite2D" parent="."]
-position = Vector2(472, 40)
+position = Vector2(594.475, 42.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_whgf5")
 animation = &"watch"
 autoplay = "watch"
 
 [node name="OrangeRobeFan6" type="AnimatedSprite2D" parent="."]
-position = Vector2(456, 64)
+position = Vector2(578.475, 66.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_1yb48")
 animation = &"watch"
 autoplay = "watch"
 
 [node name="BlackRobeFan3" type="AnimatedSprite2D" parent="."]
-position = Vector2(680, 72)
+position = Vector2(880.918, 74.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_3nvbw")
 animation = &"watch"
 autoplay = "watch"
 
 [node name="BlackRobeFan4" type="AnimatedSprite2D" parent="."]
-position = Vector2(784, 40)
+position = Vector2(984.918, 42.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_3nvbw")
 animation = &"watch"
 autoplay = "watch"
 
 [node name="GreenRobeFan2" type="AnimatedSprite2D" parent="."]
-position = Vector2(768, 56)
+position = Vector2(968.918, 58.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_bcp78")
 animation = &"watch"
@@ -308,7 +314,7 @@ frame = 2
 frame_progress = 0.734988
 
 [node name="GreenRobeFan3" type="AnimatedSprite2D" parent="."]
-position = Vector2(561, 78)
+position = Vector2(722.697, 80.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_bcp78")
 animation = &"watch"
@@ -317,7 +323,7 @@ frame = 2
 frame_progress = 0.734988
 
 [node name="GreenRobeFan4" type="AnimatedSprite2D" parent="."]
-position = Vector2(680, 96)
+position = Vector2(880.918, 98.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_bcp78")
 animation = &"watch"
@@ -326,42 +332,42 @@ frame = 2
 frame_progress = 0.734988
 
 [node name="PurpleRobeFan2" type="AnimatedSprite2D" parent="."]
-position = Vector2(520, 96)
+position = Vector2(681.697, 98.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_whgf5")
 animation = &"watch"
 autoplay = "watch"
 
 [node name="PurpleRobeFan3" type="AnimatedSprite2D" parent="."]
-position = Vector2(734, 59)
+position = Vector2(934.918, 61.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_whgf5")
 animation = &"watch"
 autoplay = "watch"
 
 [node name="OrangeRobeFan2" type="AnimatedSprite2D" parent="."]
-position = Vector2(600, 79)
+position = Vector2(761.697, 81.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_1yb48")
 animation = &"watch"
 autoplay = "watch"
 
 [node name="OrangeRobeFan4" type="AnimatedSprite2D" parent="."]
-position = Vector2(744, 96)
+position = Vector2(944.918, 98.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_1yb48")
 animation = &"watch"
 autoplay = "watch"
 
 [node name="OrangeRobeFan5" type="AnimatedSprite2D" parent="."]
-position = Vector2(520, 40)
+position = Vector2(681.697, 42.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_1yb48")
 animation = &"watch"
 autoplay = "watch"
 
 [node name="BlackRobeFan2" type="AnimatedSprite2D" parent="."]
-position = Vector2(576, 96)
+position = Vector2(737.697, 98.677)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_3nvbw")
 animation = &"watch"

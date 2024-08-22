@@ -5,6 +5,6 @@
 
 [node name="SpellBook" type="Sprite2D"]
 position = Vector2(166, 135)
-scale = Vector2(1.47217, 1.47217)
+scale = Vector2(2.208, 2.208)
 texture = ExtResource("1_h3ntd")
 script = ExtResource("1_udkx0")
