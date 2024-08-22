@@ -60,18 +60,6 @@ func _process(_delta):
 	if Global.start_flag:
 		if Input.is_action_just_released("start"):
 			_on_pause_button_pressed()
-	#if Global.pause_flag:
-		#$ResumeButton.grab_focus()
-		#if Input.is_action_just_released("down_spell"):
-			#$MainMenuButton.grab_focus()
-		#if Input.is_action_just_released("up_spell"):
-			#$ResumeButton.grab_focus()
-		#
-		## P2 Menuing
-		#if Input.is_action_just_released("down_spell_p2"):
-			#$MainMenuButton.grab_focus()
-		#if Input.is_action_just_released("up_spell_p2"):
-			#$ResumeButton.grab_focus()
 	
 func new_round():
 	$Rmage.controller_lock = true
@@ -79,6 +67,7 @@ func new_round():
 	
 	# Remove all existing fireballs 
 	for N in self.get_children():
+		print(N)
 		if N.name.contains("Area2D") or N.name.contains("Landmine"):
 			N.queue_free()
 	
@@ -112,7 +101,7 @@ func start_training_mode():
 	$HUD.start_game.connect(new_game)
 	
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
-#funcr _process(delta):
+#func _process(delta):
 	#pass
 	
 func _on_joy_connection_changed(device_id, connected):
@@ -149,11 +138,7 @@ func bmage_round_win():
 		
 
 	await get_tree().create_timer(2).timeout
-	start_round()
-
-func start_round():
-	$Rmage.start(RMAGE_START_POS)
-	$Bmage.start(BMAGE_START_POS)
+	new_round()
 
 func victory():
 	$MainMusic.stop()
@@ -166,6 +151,7 @@ func start_music():
 		current_song = load(MUSIC_PATH + songs[rand_nb])
 	$MainMusic.set_stream(current_song)
 	$MainMusic.play()
+	$MainMusic.stream.loop = true
 
 func _on_audio_stream_player_finished():
 	start_music()
