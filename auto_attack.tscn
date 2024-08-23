@@ -1,39 +1,39 @@
 [gd_scene load_steps=10 format=3 uid="uid://pllmnqti7i3x"]
 
 [ext_resource type="Script" path="res://AutoAttack.gd" id="1_1frvb"]
-[ext_resource type="Texture2D" uid="uid://ho28ruwbqbtw" path="res://assets/fireball.png" id="2_g38s6"]
+[ext_resource type="Texture2D" uid="uid://7fn54t46b1pu" path="res://assets/fireball_rotated.png" id="2_34wor"]
 [ext_resource type="AudioStream" uid="uid://drpv3ll8uww0o" path="res://assets/auto_attack.wav" id="3_3bs5l"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hrr4e"]
-atlas = ExtResource("2_g38s6")
+[sub_resource type="AtlasTexture" id="AtlasTexture_jjkdx"]
+atlas = ExtResource("2_34wor")
 region = Rect2(0, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6g7m5"]
-atlas = ExtResource("2_g38s6")
-region = Rect2(48, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_om618"]
+atlas = ExtResource("2_34wor")
+region = Rect2(0, 48, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_abkdf"]
-atlas = ExtResource("2_g38s6")
-region = Rect2(96, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rbxf"]
+atlas = ExtResource("2_34wor")
+region = Rect2(0, 96, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_me452"]
-atlas = ExtResource("2_g38s6")
-region = Rect2(144, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_ondoa"]
+atlas = ExtResource("2_34wor")
+region = Rect2(0, 144, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_orgpt"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hrr4e")
+"texture": SubResource("AtlasTexture_jjkdx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6g7m5")
+"texture": SubResource("AtlasTexture_om618")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_abkdf")
+"texture": SubResource("AtlasTexture_7rbxf")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_me452")
+"texture": SubResource("AtlasTexture_ondoa")
 }],
 "loop": true,
 "name": &"default",
@@ -48,13 +48,13 @@ scale = Vector2(1.5, 1.5)
 script = ExtResource("1_1frvb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1.33333, -12.6667)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_orgpt")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.166668, 0.833328)
+position = Vector2(-14, 0.666667)
+rotation = 1.5708
 shape = SubResource("RectangleShape2D_oq0pj")
 
 [node name="AutoAttackCast" type="AudioStreamPlayer" parent="."]

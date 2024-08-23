@@ -1,39 +1,39 @@
 [gd_scene load_steps=10 format=3 uid="uid://b56oto3byd75c"]
 
-[ext_resource type="Texture2D" uid="uid://ho28ruwbqbtw" path="res://assets/fireball.png" id="1_4muy4"]
 [ext_resource type="Script" path="res://big_fireball.gd" id="1_7iqmn"]
+[ext_resource type="Texture2D" uid="uid://7fn54t46b1pu" path="res://assets/fireball_rotated.png" id="2_yhsnj"]
 [ext_resource type="AudioStream" uid="uid://cnuc1l2orbvv0" path="res://assets/big_fireball.wav" id="3_q3yik"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hrr4e"]
-atlas = ExtResource("1_4muy4")
+[sub_resource type="AtlasTexture" id="AtlasTexture_emkml"]
+atlas = ExtResource("2_yhsnj")
 region = Rect2(0, 0, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6g7m5"]
-atlas = ExtResource("1_4muy4")
-region = Rect2(48, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_nlcua"]
+atlas = ExtResource("2_yhsnj")
+region = Rect2(0, 48, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_abkdf"]
-atlas = ExtResource("1_4muy4")
-region = Rect2(96, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2tyc"]
+atlas = ExtResource("2_yhsnj")
+region = Rect2(0, 96, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_me452"]
-atlas = ExtResource("1_4muy4")
-region = Rect2(144, 0, 48, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_5itd5"]
+atlas = ExtResource("2_yhsnj")
+region = Rect2(0, 144, 48, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_02lvl"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hrr4e")
+"texture": SubResource("AtlasTexture_emkml")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6g7m5")
+"texture": SubResource("AtlasTexture_nlcua")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_abkdf")
+"texture": SubResource("AtlasTexture_g2tyc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_me452")
+"texture": SubResource("AtlasTexture_5itd5")
 }],
 "loop": true,
 "name": &"default",
@@ -44,18 +44,17 @@ animations = [{
 size = Vector2(176, 303.625)
 
 [node name="BigFireball" type="Area2D"]
-position = Vector2(-51, -67)
 scale = Vector2(1.25, 1.25)
 script = ExtResource("1_7iqmn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(52.5, 52.5)
 scale = Vector2(8, 8)
 sprite_frames = SubResource("SpriteFrames_02lvl")
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(51, 91.1875)
+position = Vector2(-27.2, -4)
+rotation = 1.5708
 shape = SubResource("RectangleShape2D_l1l2x")
 
 [node name="FireballCast" type="AudioStreamPlayer" parent="."]

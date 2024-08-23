@@ -56,7 +56,7 @@ func new_spell(spell_type, caster):
 	return spell_queue
 
 # TODO: Move casting logic into respective classes
-func cast_spell(lookvector, caster):
+func cast_spell(lookvector, controllerangle, caster):
 	# Can't cast non special spells witout aiming
 	if curr_spell:
 		if abs(lookvector.x + lookvector.y) == 0 and curr_spell.contains("special") == false:
@@ -94,7 +94,9 @@ func cast_spell(lookvector, caster):
 					spell.cast(lookvector)
 					spell.reparent(get_parent().get_parent())
 			elif caster == "Bmage": # Re-direction special move
+				print(spell_queue)
 				for spell in spell_queue:
+					spell.rotation = controllerangle
 					spell.cast(lookvector)
 					spell.reparent(get_parent().get_parent())
 				return # Allows for re-direction
@@ -102,12 +104,14 @@ func cast_spell(lookvector, caster):
 	curr_spell = null
 
 # The auto attack should bypass the spell queue and hense have its own function
-func cast_auto_attack(lookvector, caster):
-	var auto = AutoAttack.instantiate()
-	auto.set_caster(caster)
-	add_child(auto)
-	auto.cast(lookvector)
-	auto.reparent(get_parent().get_parent())
+func cast_auto_attack(lookvector, controllerangle, caster):
+	if abs(lookvector.x + lookvector.y) != 0:
+		var auto = AutoAttack.instantiate()
+		auto.rotation = controllerangle
+		auto.set_caster(caster)
+		add_child(auto)
+		auto.cast(lookvector)
+		auto.reparent(get_parent().get_parent())
 
 func _process(_delta):
 	pass

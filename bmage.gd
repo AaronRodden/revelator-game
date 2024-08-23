@@ -91,16 +91,28 @@ func _process(delta):
 	lookvector.y = (Input.get_action_strength("down_aim") - Input.	get_action_strength("up_aim"))
 	$SpellBook.position = spell_book_position + lookvector * 20
 	
-	# TODO: Add cast sound FX
+	# Player aiming rotations
+	var deadzone = 0.5
+	var controllerangle = Vector2.ZERO.angle()
+	var xAxisRL = (Input.get_action_strength("right_aim") - Input.get_action_strength("left_aim"))
+	var yAxisUD = (Input.get_action_strength("down_aim") - Input.	get_action_strength("up_aim"))
+
+	if abs(xAxisRL) > deadzone || abs(yAxisUD) > deadzone:
+		controllerangle = Vector2(xAxisRL, yAxisUD).angle()
+		if $SpellBook.get_children().size() > 0:
+			$SpellBook.get_children()[0].rotation = controllerangle
+	
+	# Player Casting
 	if Input.is_action_just_pressed("shoot_spell"):
 		emit_signal("spell_cast")
-		$SpellBook.cast_spell(lookvector, self.name)
+		$SpellBook.cast_spell(lookvector, controllerangle,  self.name)
 		input_buffer = []
 		input_count = 0
-		
+	
+	# Player Auto-Attacking	
 	if Input.is_action_just_pressed("auto_attack"):
 		if auto_attack_flag:
-			$SpellBook.cast_auto_attack(lookvector, self.name)
+			$SpellBook.cast_auto_attack(lookvector, controllerangle, self.name)
 			auto_attack_flag = false
 			emit_signal("auto_attack_cast")
 			auto_attack_timer.start()

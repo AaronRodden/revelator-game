@@ -98,16 +98,28 @@ func _process(delta):
 	lookvector.y = (Input.get_action_strength("down_aim_p2") - Input.get_action_strength("up_aim_p2"))
 	$SpellBook.position = spell_book_position + lookvector * 20
 	
-	# TODO: Add cast sound FX
+	# Player aiming rotations
+	var deadzone = 0.5
+	var controllerangle = Vector2.ZERO.angle()
+	var xAxisRL = (Input.get_action_strength("right_aim_p2") - Input.get_action_strength("left_aim_p2"))
+	var yAxisUD = (Input.get_action_strength("down_aim_p2") - Input.	get_action_strength("up_aim_p2"))
+
+	if abs(xAxisRL) > deadzone || abs(yAxisUD) > deadzone:
+		controllerangle = Vector2(xAxisRL, yAxisUD).angle()
+		if $SpellBook.get_children().size() > 0:
+			$SpellBook.get_children()[0].rotation = controllerangle
+	
+	# Player Casting
 	if Input.is_action_just_pressed("shoot_spell_p2"):
 		emit_signal("spell_cast")
-		$SpellBook.cast_spell(lookvector, self.name)
+		$SpellBook.cast_spell(lookvector, controllerangle, self.name)
 		input_buffer = []
 		input_count = 0
-		
+
+	# Player Auto-Attacking	
 	if Input.is_action_just_pressed("auto_attack_p2"):
 		if auto_attack_flag:
-			$SpellBook.cast_auto_attack(lookvector, self.name)
+			$SpellBook.cast_auto_attack(lookvector, controllerangle, self.name)
 			auto_attack_flag = false
 			emit_signal("auto_attack_cast")
 			auto_attack_timer.start()
@@ -152,7 +164,7 @@ func _process(delta):
 	for move in bmage_moves:
 		if bmage_moves[move] == input_buffer: 
 			input_buffer = []
-			emit_signal("spell_completed") # TODO: Add load sound FX
+			emit_signal("spell_completed")
 			$SpellBook.new_spell(move, self.name)
 	
 func start(pos):
@@ -168,7 +180,6 @@ func start(pos):
 func _physics_process(_delta):
 	move_and_collide(Vector2(0, 0)) # Move down 1 pixel per physics frame
 
-# TODO: Add hit sound FX
 func _on_hurtbox_area_entered(area):
 	if area.caster != self.name and area.caster != null:
 		hide()  # Player disappears after being hit.

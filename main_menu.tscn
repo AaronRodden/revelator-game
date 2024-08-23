@@ -270,8 +270,8 @@ texture = ExtResource("2_38y2d")
 
 [node name="VersusButton" type="Button" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.882353, 0.87451, 0, 1)
+theme_override_colors/font_focus_color = Color(0.882353, 0.87451, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "Versus"
 
@@ -284,8 +284,8 @@ texture = ExtResource("3_sl0os")
 
 [node name="TrainingButton" type="Button" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0.882353, 0.87451, 0, 1)
+theme_override_colors/font_focus_color = Color(0.882353, 0.87451, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "Training"
 
