@@ -3,7 +3,23 @@ extends Node
 var training_mode = false
 var current_song
 
-var MUSIC_PATH = "res://assets/music/"
+var SONG_LIST = [
+	"res://assets/music/bounty.mp3",
+	"res://assets/music/champions.mp3",
+	"res://assets/music/dandy.mp3",
+	"res://assets/music/enchantress.mp3",
+	"res://assets/music/enchantress2.mp3",
+	"res://assets/music/guest.mp3",
+	"res://assets/music/knight.mp3",
+	"res://assets/music/mole.mp3",
+	"res://assets/music/plague.mp3",
+	"res://assets/music/polar.mp3",
+	"res://assets/music/propeller.mp3",
+	"res://assets/music/rival.mp3",
+	"res://assets/music/spectre.mp3",
+	"res://assets/music/tinker.mp3",
+	"res://assets/music/tinker2.mp3"]
+
 var rng = RandomNumberGenerator.new()
 
 var RMAGE_START_POS = Vector2(720, 904)
@@ -17,20 +33,6 @@ var p2_score = 0
 
 func _set_training_mode():
 	training_mode = true
-
-func get_all_songs():
-	var dir = DirAccess.open(MUSIC_PATH)
-	var contents = []
-	if dir:
-		dir.list_dir_begin()
-		var file_name = dir.get_next()
-		while file_name != "":
-			if file_name.ends_with(".mp3"):
-				contents.append(file_name)
-			file_name = dir.get_next()
-	else:
-		print("An error occurred when trying to access the music.")
-	return contents
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -145,10 +147,9 @@ func victory():
 	$VictoryTheme.play()
 
 func start_music():
-	var songs = get_all_songs()
-	var rand_nb = rng.randi_range(0, songs.size()-1)
+	var rand_nb = rng.randi_range(0, SONG_LIST.size()-1)
 	if current_song == null:
-		current_song = load(MUSIC_PATH + songs[rand_nb])
+		current_song = load(SONG_LIST[rand_nb])
 	$MainMusic.set_stream(current_song)
 	$MainMusic.play()
 	$MainMusic.stream.loop = true
