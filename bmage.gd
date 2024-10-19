@@ -108,6 +108,9 @@ func _process(delta):
 		$SpellBook.cast_spell(lookvector, controllerangle,  self.name)
 		input_buffer = []
 		input_count = 0
+		
+	if Input.is_action_just_released("shoot_spell"):
+		$SpellBook.release_spell(lookvector, controllerangle,  self.name)
 	
 	# Player Auto-Attacking	
 	if Input.is_action_just_pressed("auto_attack"):

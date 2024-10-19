@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dssrjn8vdt51k" path="res://spell_input_ui.tscn" id="2_w1ksp"]
 [ext_resource type="Texture2D" uid="uid://b782we6mhe5xu" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_dpad_down.svg" id="3_fhc41"]
 [ext_resource type="Texture2D" uid="uid://cb7h2hs3fqvgq" path="res://assets/MoveListRed.png" id="3_iipp0"]
-[ext_resource type="Texture2D" uid="uid://bswqol84vg5so" path="res://assets/MoveListBlue.png" id="4_1q3ee"]
+[ext_resource type="Texture2D" uid="uid://b5bi81p6jrbyk" path="res://assets/MoveListBlue_PS.png" id="4_nf20p"]
 [ext_resource type="Texture2D" uid="uid://hgigmqva7po1" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_button_color_cross.svg" id="5_273hj"]
 [ext_resource type="Texture2D" uid="uid://cxu8tuf1uvxow" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_button_color_circle.svg" id="6_2oava"]
 [ext_resource type="Texture2D" uid="uid://paipibhqigla" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_button_color_triangle.svg" id="7_ey71d"]
@@ -35,7 +35,7 @@ texture = ExtResource("3_iipp0")
 [node name="MoveListBlue" type="Sprite2D" parent="."]
 position = Vector2(1696, 544)
 scale = Vector2(0.475, 0.464345)
-texture = ExtResource("4_1q3ee")
+texture = ExtResource("4_nf20p")
 
 [node name="spell_right" type="Sprite2D" parent="."]
 visible = false

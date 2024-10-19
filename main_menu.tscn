@@ -289,6 +289,13 @@ theme_override_colors/font_focus_color = Color(0.882353, 0.87451, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "Training"
 
+[node name="QuitButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.882353, 0.87451, 0, 1)
+theme_override_colors/font_focus_color = Color(0.882353, 0.87451, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "Quit"
+
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
@@ -305,7 +312,7 @@ texture = ExtResource("9_x17cj")
 stream = ExtResource("6_w2gpk")
 
 [node name="HomingArrow" type="AnimatedSprite2D" parent="."]
-position = Vector2(1066.67, 1094.44)
+position = Vector2(1066.67, 1169.73)
 scale = Vector2(5.33033, 5.33033)
 sprite_frames = SubResource("SpriteFrames_xc2tb")
 
@@ -316,10 +323,11 @@ sprite_frames = SubResource("SpriteFrames_rmje3")
 autoplay = "default"
 
 [node name="LaserCharge" type="AnimatedSprite2D" parent="."]
-position = Vector2(681.081, 1088.89)
+position = Vector2(681.081, 1164.18)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_cooxa")
 autoplay = "default"
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/VersusButton" to="." method="_on_versus_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/TrainingButton" to="." method="_on_training_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

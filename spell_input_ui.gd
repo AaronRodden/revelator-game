@@ -84,17 +84,17 @@ func _ready():
 				texture_path = down_arrow_path
 				scale_variable = 1.5
 			"a":
-				texture_path = a_path
-				scale_variable = 0.22
+				texture_path = circle_path
+				scale_variable = 1.5
 			"b":
-				texture_path = b_path
-				scale_variable = 0.22
+				texture_path = cross_path
+				scale_variable = 1.5
 			"x":
-				texture_path = x_path
-				scale_variable = 0.22
+				texture_path = triangle_path
+				scale_variable = 1.5
 			"y":
-				texture_path = y_path
-				scale_variable = 0.22
+				texture_path = square_path
+				scale_variable = 1.5
 		self.texture = load(texture_path)
 		if p2:
 			self.position.x = P2_X_STARTING_POSITON + h_offset

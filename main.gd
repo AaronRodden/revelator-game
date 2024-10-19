@@ -69,7 +69,6 @@ func new_round():
 	
 	# Remove all existing fireballs 
 	for N in self.get_children():
-		print(N)
 		if N.name.contains("Area2D") or N.name.contains("Landmine"):
 			N.queue_free()
 	

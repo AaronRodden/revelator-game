@@ -102,7 +102,7 @@ func _process(delta):
 	var deadzone = 0.5
 	var controllerangle = Vector2.ZERO.angle()
 	var xAxisRL = (Input.get_action_strength("right_aim_p2") - Input.get_action_strength("left_aim_p2"))
-	var yAxisUD = (Input.get_action_strength("down_aim_p2") - Input.	get_action_strength("up_aim_p2"))
+	var yAxisUD = (Input.get_action_strength("down_aim_p2") - Input.get_action_strength("up_aim_p2"))
 
 	if abs(xAxisRL) > deadzone || abs(yAxisUD) > deadzone:
 		controllerangle = Vector2(xAxisRL, yAxisUD).angle()
@@ -144,19 +144,19 @@ func _process(delta):
 			emit_signal("spell_input", "up_p2")
 			input_count += 1
 			
-		if Input.is_action_just_released("a"):
+		if Input.is_action_just_released("circle_p2"):
 			input_buffer.push_back("a")
 			emit_signal("spell_input", "a")
 			input_count += 1
-		if Input.is_action_just_released("b"):
+		if Input.is_action_just_released("cross_p2"):
 			input_buffer.push_back("b")
 			emit_signal("spell_input", "b")
 			input_count += 1
-		if Input.is_action_just_released("x"):
+		if Input.is_action_just_released("triangle_p2"):
 			input_buffer.push_back("x")
 			emit_signal("spell_input", "x")
 			input_count += 1
-		if Input.is_action_just_released("y"):
+		if Input.is_action_just_released("square_p2"):
 			input_buffer.push_back("y")
 			emit_signal("spell_input", "y")
 			input_count += 1
