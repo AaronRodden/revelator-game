@@ -41,7 +41,6 @@ autoplay = "default"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(13.3, 0.799999)
 rotation = 1.5708
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_hap5m")
 
 [node name="ArrowCast" type="AudioStreamPlayer" parent="."]
