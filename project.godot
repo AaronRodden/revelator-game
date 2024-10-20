@@ -21,7 +21,6 @@ Global="*res://global.gd"
 
 [display]
 
-window/size/viewport_width=1920
 window/size/mode=3
 
 [input]
@@ -130,7 +129,7 @@ circle={
 }
 shoot_spell={
 "deadzone": 0.5,
-"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":5,"axis_value":1.0,"script":null)
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":8,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
 ward_activate={
@@ -225,7 +224,7 @@ a={
 }
 shoot_spell_p2={
 "deadzone": 0.5,
-"events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":5,"axis_value":1.0,"script":null)
+"events": [Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":1,"button_index":8,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
 start={

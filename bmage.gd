@@ -37,7 +37,7 @@ var rmage_moves = {
 # D-Pad: Spell Casting Directional Inputs
 # Face Buttons: Spell Casting Button Inputs
 # R1: Auto-attack
-# R2: Shoot Preped Spell
+# R3: Shoot Preped Spell
 # L1: Dodge
 # L2: <>
 
@@ -51,7 +51,6 @@ func _ready():
 	auto_attack_timer.connect("timeout", _on_auto_attack_timeout, 0)
 	auto_attack_timer.wait_time = Global.AUTO_ATTACK_TIMEOUT
 	add_child(auto_attack_timer)
-
 
 func _process(delta):
 	
