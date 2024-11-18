@@ -94,7 +94,6 @@ func cast_spell(lookvector, controllerangle, caster):
 					spell.cast(lookvector)
 					spell.reparent(get_parent().get_parent())
 			elif caster == "Bmage": # Re-direction special move
-				print(spell_queue)
 				for spell in spell_queue:
 					spell.rotation = controllerangle
 					spell.cast(lookvector)

@@ -180,9 +180,11 @@ func start(pos):
 func _physics_process(_delta):
 	move_and_collide(Vector2(0, 0)) # Move down 1 pixel per physics frame
 
+func turn_off_hurtbox():
+	$WmageHurtbox.get_child(0).set_deferred("disabled", true)
+
 func _on_hurtbox_area_entered(area):
 	## TODO: Tech debt, can we avoid cases for every hurtbox interaction?
-	print(area.name)
 	if area.caster == "target":
 		return
 	elif area.caster != self.name and area.caster != null:
@@ -190,4 +192,4 @@ func _on_hurtbox_area_entered(area):
 		hit.emit()
 		$HitSound.play()
 		$CollisionShape2D.set_deferred("disabled", true)
-		$WmageHurtbox.get_child(0).set_deferred("disabled", true)
+		turn_off_hurtbox()

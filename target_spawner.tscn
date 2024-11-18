@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://target_spawner.gd" id="2_kd154"]
 
 [node name="TargetSpawner" type="Sprite2D"]
+position = Vector2(579, 331)
 scale = Vector2(1.70833, 1.70833)
 texture = ExtResource("1_iduop")
 script = ExtResource("2_kd154")

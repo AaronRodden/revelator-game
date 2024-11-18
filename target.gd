@@ -14,7 +14,7 @@ var screen_size
 signal hit
 signal hit_mage
 
-func set_target(type, velocity_vector):
+func set_target(type, velocity_vector, speed_modifier):
 	match type:
 		"normal":
 			$TargetRed.visible = true
@@ -22,6 +22,7 @@ func set_target(type, velocity_vector):
 			$TargetGold.visible = true
 			target_type = "gold"
 	self.velocity = velocity_vector
+	self.speed = speed_modifier
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():

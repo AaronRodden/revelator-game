@@ -2,6 +2,7 @@ extends Sprite2D
 
 var Target = preload("res://target.tscn")
 
+# TODO: Look into changing this around for various skill levels
 var TARGET_BUFFER_MIN = 1
 var TARGET_BUFFER_MAX = 5
 
@@ -49,15 +50,16 @@ func spawn_target():
 	# -45 degree to 45 degree
 	# -0.785 to 0.785
 	var rotation_modifier = deg_to_rad(rng.randf_range(-45, 45))
+	var speed_modifier = randf_range(50, 175)
 	var velocity_vec = Vector2(150, 0).rotated(rotation_modifier)
 	
 	var special_target = rng.randi_range(0,4) # Decides if red or gold
 	if special_target == 0:
-		new_target.set_target("gold", velocity_vec)
+		new_target.set_target("gold", velocity_vec, speed_modifier)
 		new_target.connect("hit", target_hit.bind(Global.GOLD_TARGET_VAL))
 		new_target.connect("hit_mage", mage_collision)
 	else:
-		new_target.set_target("normal", velocity_vec)
+		new_target.set_target("normal", velocity_vec, speed_modifier)
 		new_target.connect("hit", target_hit.bind(Global.RED_TARGET_VAL))
 		new_target.connect("hit_mage", mage_collision)
 	add_child(new_target)

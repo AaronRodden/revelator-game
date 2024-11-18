@@ -81,6 +81,8 @@ process_mode = 2
 layout_mode = 2
 text = "Main Menu"
 
+[node name="TargetsTimer" type="Timer" parent="."]
+
 [connection signal="start_game" from="HUD" to="HUD" method="_on_start_game"]
 [connection signal="finished" from="MainMusic" to="." method="_on_audio_stream_player_finished"]
 [connection signal="pressed" from="PauseButton" to="." method="_on_pause_button_pressed"]
