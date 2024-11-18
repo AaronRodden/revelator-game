@@ -7,6 +7,7 @@ var caster
 
 var velocity = Vector2(0.0, 0.0)
 var castFlag = false
+var explosion_timer = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,16 +27,13 @@ func set_caster(current_caster):
 
 func _on_body_entered(body):
 	pass
-	#if body.name != caster:
-		#$LandmineSprite.visible = false
-		#$ExplosionSprite.visible = true
-		#$LandmineHit.play()
-		#emit_signal("hit")
 
 func _on_area_entered(area):
-	if area.name.contains("Bmage"):  # TODO: Remove hardcoded value here
+	if area.name.contains("Rmage"):
+		return
+	if area.name.contains("Bmage") or area.caster.contains("target"):  # TODO: Remove hardcoded value here
 		$LandmineSprite.visible = false
 		$ExplosionSprite.visible = true
-		$LandmineHit.play()
 		emit_signal("hit")
-	emit_signal("hit")
+		await get_tree().create_timer(1).timeout
+		queue_free()

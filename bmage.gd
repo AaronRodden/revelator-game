@@ -11,7 +11,7 @@ var velocity
 var spell_book_position
 var curr_spell
 
-@export var controller_lock = false
+@export var controller_lock = true
 @export var speed = 275
 var lookvector = Vector2.ZERO
 var input_buffer = []
@@ -174,7 +174,10 @@ func _physics_process(_delta):
 
 # TODO: Add hit sound FX
 func _on_hurtbox_area_entered(area):
-	if area.caster != self.name and area.caster != null:
+	## TODO: Tech debt, can we avoid cases for every hurtbox interaction?
+	if area.caster == "target":
+		return
+	elif area.caster != self.name and area.caster != null:
 		hide()  # Player disappears after being hit.
 		hit.emit()
 		$HitSound.play()

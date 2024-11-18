@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8tt5qgwkjlb"]
+
+[ext_resource type="Texture2D" uid="uid://dr00edtyvvjax" path="res://assets/arrow_sprite_right.png" id="1_iduop"]
+[ext_resource type="Script" path="res://target_spawner.gd" id="2_kd154"]
+
+[node name="TargetSpawner" type="Sprite2D"]
+scale = Vector2(1.70833, 1.70833)
+texture = ExtResource("1_iduop")
+script = ExtResource("2_kd154")
+
+[node name="Timer" type="Timer" parent="."]

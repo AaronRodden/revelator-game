@@ -80,7 +80,18 @@ func round_win(player):
 	elif player == 1:
 		p2_score += 1
 		$P2Score.text = str(p2_score)
+		
+func red_target_hit():
+	p1_score += 1
+	$P1Score.text = str(p1_score)
+	
+func gold_target_hit():
+	p1_score += 3
+	$P1Score.text = str(p1_score)
 
+func target_mage_hit():
+	p1_score -= 5
+	$P1Score.text = str(p1_score)
 
 #TODO: Logic for resetting game, "closing the loop"		
 func victory(player):

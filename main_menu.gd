@@ -35,3 +35,9 @@ func _on_training_button_pressed():
 	Global.training_mode = true
 	$MainMenuMusic.stop()
 	get_tree().change_scene_to_file("res://main.tscn")
+
+# TODO: Implement this transition
+func _on_break_the_targets_button_pressed():
+	Global.break_the_targets = true
+	$MainMenuMusic.stop()
+	get_tree().change_scene_to_file("res://main.tscn")

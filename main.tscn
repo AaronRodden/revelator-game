@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bm2erb45ptmj5"]
+[gd_scene load_steps=11 format=3 uid="uid://bm2erb45ptmj5"]
 
 [ext_resource type="PackedScene" uid="uid://b2pgalkm1uevl" path="res://arena.tscn" id="1_o8sir"]
 [ext_resource type="Script" path="res://main.gd" id="1_v5b6b"]
@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://bve4tny10wumn" path="res://assets/soundfx/For Shovelry! (Boss Victory) - Shovel Knight [OST] [CzSnJ_1YVmY].mp3" id="6_4mu1f"]
 [ext_resource type="AudioStream" uid="uid://dafd8bnil2gfr" path="res://assets/[Guilty gear X]Blue water blue sky(May's theme) 8-bit cover.mp3" id="6_6ecsk"]
 [ext_resource type="PackedScene" uid="uid://b47kgy4t7hhhj" path="res://main_menu.tscn" id="7_1uvis"]
+[ext_resource type="AudioStream" uid="uid://n5333x2v1se4" path="res://assets/Targets (8-Bit Remix) - Super Smash Bros. Melee - loop ready.mp3" id="7_4vg31"]
 [ext_resource type="Script" path="res://PauseMenu.gd" id="9_540e4"]
 
 [node name="Main" type="Node"]
@@ -17,9 +18,11 @@ script = ExtResource("1_v5b6b")
 position = Vector2(0, -2)
 
 [node name="Rmage" parent="." instance=ExtResource("2_vwoga")]
+visible = false
 position = Vector2(720, 904)
 
 [node name="Bmage" parent="." instance=ExtResource("5_jeu2w")]
+visible = false
 position = Vector2(1184, 320)
 
 [node name="HUD" parent="." instance=ExtResource("3_a55rb")]
@@ -28,6 +31,9 @@ position = Vector2(1184, 320)
 
 [node name="TrainingModeMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_6ecsk")
+
+[node name="BreakTheTargetsMusic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_4vg31")
 
 [node name="VictoryTheme" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_4mu1f")
