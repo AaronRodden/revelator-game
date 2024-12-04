@@ -3,10 +3,10 @@ extends Sprite2D
 
 var spell_texture
 
-var up_arrow_path = "res://assets/arrow_sprite_up.png"
-var down_arrow_path = "res://assets/arrow_sprite_down.png"
-var left_arrow_path = "res://assets/arrow_sprite_left.png"
-var right_arrow_path = "res://assets/arrow_sprite_right.png"
+var up_arrow_path = "res://assets/arrow_sprite_up_blue.png"
+var down_arrow_path = "res://assets/arrow_sprite_down_blue.png"
+var left_arrow_path = "res://assets/arrow_sprite_left_blue.png"
+var right_arrow_path = "res://assets/arrow_sprite_right_blue.png"
 
 var square_path = "res://addons/awesome_input_icons/assets/ps4_vector/playstation_button_color_square.svg"
 var triangle_path = "res://addons/awesome_input_icons/assets/ps4_vector/playstation_button_color_triangle.svg"
@@ -19,11 +19,11 @@ var x_path = "res://assets/Switch Button Icons and Controls/Buttons Full Solid/W
 var y_path = "res://assets/Switch Button Icons and Controls/Buttons Full Solid/White/SVG/Y.svg"
 
 # TODO: This is all hard coded right now!
-var P1_X_STARTING_POSITON = 88
-var P1_Y_STARTING_POSITION = 352
+var P1_X_STARTING_POSITON = 150
+var P1_Y_STARTING_POSITION = 331
 
-var P2_X_STARTING_POSITON = 1560
-var P2_Y_STARTING_POSITION = 352
+var P2_X_STARTING_POSITON = 1536
+var P2_Y_STARTING_POSITION = 328
 var p2_face_buttons = ["a", "b", "x", "y"]
 
 var h_offset = 0.0
@@ -49,16 +49,16 @@ func _ready():
 		match spell_texture:
 			"right":
 				texture_path = right_arrow_path
-				scale_variable = 1.5
+				scale_variable = 0.8
 			"left":
 				texture_path = left_arrow_path
-				scale_variable = 1.5
+				scale_variable = 0.8
 			"up":
 				texture_path = up_arrow_path
-				scale_variable = 1.5
+				scale_variable = 0.8
 			"down":
 				texture_path = down_arrow_path
-				scale_variable = 1.5
+				scale_variable = 0.8
 			"cross":
 				texture_path = cross_path
 				scale_variable = 1.5
@@ -73,16 +73,16 @@ func _ready():
 				scale_variable = 1.5
 			"right_p2":
 				texture_path = right_arrow_path
-				scale_variable = 1.5
+				scale_variable = 0.8
 			"left_p2":
 				texture_path = left_arrow_path
-				scale_variable = 1.5
+				scale_variable = 0.8
 			"up_p2":
 				texture_path = up_arrow_path
-				scale_variable = 1.5
+				scale_variable = 0.8
 			"down_p2":
 				texture_path = down_arrow_path
-				scale_variable = 1.5
+				scale_variable = 0.8
 			"a":
 				texture_path = a_path
 				scale_variable = 0.22

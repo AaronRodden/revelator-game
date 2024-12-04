@@ -25,7 +25,9 @@ var auto_attack_flag = true
 var rmage_moves = {
 	"light_fireball": ["down", "right", "square"], 
 	"medium_fireball": ["down", "left", "triangle"], 
+	"interim_dp_input": ["right", "down", "right"],  # TODO: This is kinda hacky
 	"heavy_fireball": ["right", "down", "right", "cross"], 
+	"interim_half_circle_input": ["left", "down", "right"],  # TODO: This is kinda hacky
 	"special_move": ["left", "down", "right", "circle"], 
 	"ice_punch": ["right", "down", "right", "square"]
 	}
@@ -153,11 +155,28 @@ func _process(delta):
 			emit_signal("spell_input", "square")
 			input_count += 1
 	
-	for move in rmage_moves:
-		if rmage_moves[move] == input_buffer: 
+	# Insta-clear when you mess up inputs
+	if input_buffer.size() >= 3:
+		var spell_match = false
+		for move in rmage_moves:
+			if rmage_moves[move] == input_buffer:
+				if move.contains("interim"):
+					spell_match = true
+					break
+				input_buffer = []
+				emit_signal("spell_completed")  # TODO: Add load sound FX
+				$SpellBook.new_spell(move, self.name)
+				$CorrectSpell.play()
+				spell_match = true
+		if spell_match == false:
 			input_buffer = []
-			emit_signal("spell_completed")  # TODO: Add load sound FX
-			$SpellBook.new_spell(move, self.name)
+			input_count = 0
+			$SpellBook.new_spell(null, self.name)
+			$SpellBook.cast_spell(null, null,  self.name)
+			$WrongSpell.play()
+			emit_signal("spell_cast")
+		spell_match = false
+			
 	
 func start(pos):
 	position = pos

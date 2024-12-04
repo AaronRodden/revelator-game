@@ -25,7 +25,9 @@ var auto_attack_flag = true
 var bmage_moves = {
 	"light_fireball": ["down", "right", "y"], 
 	"medium_fireball": ["down", "left", "x"], 
+	"interim_dp_input": ["right", "down", "right"],  # TODO: This is kinda hacky
 	"heavy_fireball": ["right", "down", "right", "b"], 
+	"interim_half_circle_input": ["left", "down", "right"],  # TODO: This is kinda hacky
 	"special_move": ["left", "down", "right", "a"], 
 	"ice_punch": ["right", "down", "right", "y"]
 	}
@@ -160,12 +162,27 @@ func _process(delta):
 			input_buffer.push_back("y")
 			emit_signal("spell_input", "y")
 			input_count += 1
-	
-	for move in bmage_moves:
-		if bmage_moves[move] == input_buffer: 
+			
+	# Insta-clear when you mess up inputs
+	if input_buffer.size() >= 3:
+		var spell_match = false
+		for move in bmage_moves:
+			if bmage_moves[move] == input_buffer:
+				if move.contains("interim"):
+					spell_match = true
+					break
+				input_buffer = []
+				emit_signal("spell_completed")  # TODO: Add load sound FX
+				$SpellBook.new_spell(move, self.name)
+				spell_match = true
+		if spell_match == false:
 			input_buffer = []
-			emit_signal("spell_completed")
-			$SpellBook.new_spell(move, self.name)
+			input_count = 0
+			$SpellBook.new_spell(null, self.name)
+			$SpellBook.cast_spell(null, null,  self.name)
+			emit_signal("spell_cast")
+		spell_match = false
+	
 	
 func start(pos):
 	position = pos

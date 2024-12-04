@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b7bcm3otfsrkm" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_dpad_up.svg" id="2_ripcd"]
 [ext_resource type="PackedScene" uid="uid://dssrjn8vdt51k" path="res://spell_input_ui.tscn" id="2_w1ksp"]
 [ext_resource type="Texture2D" uid="uid://b782we6mhe5xu" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_dpad_down.svg" id="3_fhc41"]
-[ext_resource type="Texture2D" uid="uid://cb7h2hs3fqvgq" path="res://assets/MoveListRed.png" id="3_iipp0"]
-[ext_resource type="Texture2D" uid="uid://bswqol84vg5so" path="res://assets/MoveListBlue.png" id="4_1q3ee"]
+[ext_resource type="Texture2D" uid="uid://c15wxllgtv74d" path="res://assets/ScrollMoveListRedHeadshot.png" id="3_hpltj"]
+[ext_resource type="Texture2D" uid="uid://d3hsx5p44p2r4" path="res://assets/ScrollMoveListBlueHeadshot.png" id="4_vicms"]
 [ext_resource type="Texture2D" uid="uid://hgigmqva7po1" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_button_color_cross.svg" id="5_273hj"]
 [ext_resource type="Texture2D" uid="uid://cxu8tuf1uvxow" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_button_color_circle.svg" id="6_2oava"]
 [ext_resource type="Texture2D" uid="uid://paipibhqigla" path="res://addons/awesome_input_icons/assets/ps4_vector/playstation_button_color_triangle.svg" id="7_ey71d"]
@@ -28,14 +28,14 @@ script = ExtResource("1_pj8pv")
 spell_input_ui = ExtResource("2_w1ksp")
 
 [node name="MoveListRed" type="Sprite2D" parent="."]
-position = Vector2(217.5, 544)
-scale = Vector2(0.480208, 0.464164)
-texture = ExtResource("3_iipp0")
+position = Vector2(243, 544)
+scale = Vector2(1.89534, 1.83202)
+texture = ExtResource("3_hpltj")
 
 [node name="MoveListBlue" type="Sprite2D" parent="."]
-position = Vector2(1698, 544.106)
-scale = Vector2(0.470833, 0.464254)
-texture = ExtResource("4_1q3ee")
+position = Vector2(1674, 544)
+scale = Vector2(1.895, 1.867)
+texture = ExtResource("4_vicms")
 
 [node name="spell_right" type="Sprite2D" parent="."]
 visible = false
@@ -78,11 +78,11 @@ position = Vector2(43, 110)
 texture = ExtResource("8_ta72m")
 
 [node name="P1SpellInputUI" parent="." instance=ExtResource("2_w1ksp")]
-position = Vector2(88, 352)
+position = Vector2(150, 331)
 scale = Vector2(1.12891, 1.12891)
 
 [node name="P2SpellInputUI" parent="." instance=ExtResource("2_w1ksp")]
-position = Vector2(1560, 352)
+position = Vector2(1536, 328)
 scale = Vector2(1.15625, 1.15625)
 
 [node name="X" type="Sprite2D" parent="."]
