@@ -1,10 +1,12 @@
-[gd_scene load_steps=45 format=3 uid="uid://nmmeg3d72svs"]
+[gd_scene load_steps=47 format=3 uid="uid://nmmeg3d72svs"]
 
 [ext_resource type="Texture2D" uid="uid://nsgstlrq3pfp" path="res://assets/Browser Games - Super Mario Bros Crossover - Fighter Thief Black Mage and White Mage.png" id="1_fcncq"]
 [ext_resource type="Script" path="res://bmage.gd" id="1_nld2k"]
 [ext_resource type="Texture2D" uid="uid://bhmbhtloulreo" path="res://assets/wizard_sprite_red_sheet.png" id="2_en35x"]
 [ext_resource type="Texture2D" uid="uid://cux32pxubuics" path="res://assets/Game Boy GBC - Dance Dance Revolution GB Disney Mix JPN - Arrows.png" id="3_ml6p7"]
 [ext_resource type="AudioStream" uid="uid://4155txr1wtcp" path="res://assets/hitHurt.wav" id="6_lmp38"]
+[ext_resource type="AudioStream" uid="uid://bjkj0c7i0cob" path="res://assets/correct_spell.wav" id="7_xeorh"]
+[ext_resource type="AudioStream" uid="uid://bmerfjhr1ovg3" path="res://assets/wrong_spell.wav" id="8_6mky8"]
 [ext_resource type="PackedScene" uid="uid://7551sn1rqmfk" path="res://spell_book.tscn" id="8_hogf4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pl16x"]
@@ -309,5 +311,11 @@ shape = SubResource("RectangleShape2D_i5hco")
 [node name="HitSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_lmp38")
 volume_db = 8.0
+
+[node name="CorrectSpell" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_xeorh")
+
+[node name="WrongSpell" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_6mky8")
 
 [connection signal="area_entered" from="RmageHurtbox" to="." method="_on_hurtbox_area_entered"]

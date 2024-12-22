@@ -289,12 +289,17 @@ theme_override_colors/font_focus_color = Color(0.882353, 0.87451, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "Training"
 
+
 [node name="QuitButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+
+[node name="BreakTheTargetsButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.882353, 0.87451, 0, 1)
 theme_override_colors/font_focus_color = Color(0.882353, 0.87451, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "Quit"
+text = "Break The Targets!"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -330,4 +335,6 @@ autoplay = "default"
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/VersusButton" to="." method="_on_versus_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/TrainingButton" to="." method="_on_training_button_pressed"]
+
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/BreakTheTargetsButton" to="." method="_on_break_the_targets_button_pressed"]

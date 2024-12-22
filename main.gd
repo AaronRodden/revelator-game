@@ -24,10 +24,17 @@ var rng = RandomNumberGenerator.new()
 
 var RMAGE_START_POS = Vector2(720, 904)
 var BMAGE_START_POS = Vector2(1184, 320)
+var RMAGE_BREAK_TARGETS_START_POS = Vector2(945, 595)
+var BMAGE_BREAK_TARGETS_START_POS = Vector2(-1, -1) # Bmage not part of Break The Targets right now
+
+# Game Mode Modifiers
 var ROUND_WINS_MAX = 3
+var BREAK_THE_TARGETS_TIME = 60
 
 var p1_score = 0
 var p2_score = 0
+
+var timer_running = false
 
 ## **TODO** Add an input manager / controller organizer. This could be a stretch goal.
 
@@ -53,6 +60,11 @@ func _ready():
 		
 	if Global.training_mode:
 		$HUD.start_game.connect(start_training_mode)
+	elif Global.break_the_targets:
+		$Arena.connect("red_target_hit", $HUD.red_target_hit)
+		$Arena.connect("gold_target_hit", $HUD.gold_target_hit)
+		$Arena.connect("mage_hit", $HUD.target_mage_hit)
+		$HUD.start_game.connect(start_break_the_targets)
 	else:
 		$HUD.start_game.connect(new_game)
 		
@@ -62,6 +74,11 @@ func _process(_delta):
 	if Global.start_flag:
 		if Input.is_action_just_released("start"):
 			_on_pause_button_pressed()
+			
+	if timer_running:
+		if $TargetsTimer.time_left <= 0:
+			end_break_the_targets()
+		$HUD.update_timer(int($TargetsTimer.time_left))
 	
 func new_round():
 	$Rmage.controller_lock = true
@@ -84,6 +101,8 @@ func new_round():
 	$Bmage.controller_lock = false
 	
 func new_game():
+	$Rmage.visible = true
+	$Bmage.visible = true
 	current_song = null # new song
 	$TrainingModeMusic.stop()
 	start_music()
@@ -93,6 +112,10 @@ func new_game():
 	$Bmage.hit.connect(rmage_round_win)
 	
 func start_training_mode():
+	$Rmage.visible = true
+	$Bmage.visible = true
+	$Rmage.controller_lock = false
+	$Bmage.controller_lock = false
 	$TrainingModeMusic.play()
 	
 	$Rmage.start(RMAGE_START_POS)
@@ -100,6 +123,35 @@ func start_training_mode():
 	
 	Global.training_mode = false
 	$HUD.start_game.connect(new_game)
+	
+# TODO: Should I figure out how to remove Bmage? Right now it is funny...
+func start_break_the_targets():
+	$Rmage.visible = true  # Only Rmage visible for break the targets
+	$Rmage.controller_lock = false
+	$BreakTheTargetsMusic.play()
+	$BreakTheTargetsMusic.stream.loop = true
+	
+	$Rmage.start(RMAGE_BREAK_TARGETS_START_POS)
+	$Bmage.start(BMAGE_BREAK_TARGETS_START_POS)
+
+	$Arena.start_targets()
+	$HUD.display_timer()
+	$TargetsTimer.wait_time = BREAK_THE_TARGETS_TIME
+	$TargetsTimer.one_shot = true
+	$TargetsTimer.start()
+	timer_running = true
+	Global.break_the_targets = false
+	
+# TODO: This is still hardcoded for Rmage only
+func end_break_the_targets():
+	$Rmage.turn_off_hurtbox()
+	$Rmage.controller_lock = true
+	victory()
+	$HUD.victory(0)
+	# Basic victory condition logic, return to main menu
+	await get_tree().create_timer(4).timeout
+	get_tree().change_scene_to_file("res://main_menu.tscn")
+	return
 	
 ## Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):

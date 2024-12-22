@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://buprqsxexw1aq"]
+
+[ext_resource type="Texture2D" uid="uid://dofu227h011qm" path="res://assets/target.png" id="1_5iglr"]
+[ext_resource type="Script" path="res://target.gd" id="2_4v3nu"]
+[ext_resource type="Texture2D" uid="uid://dc35cqfrnaqqv" path="res://assets/target_gold.png" id="3_sobc5"]
+[ext_resource type="AudioStream" uid="uid://c5cd8trhs0dhc" path="res://assets/ssb-target-break.ogg" id="4_86lbo"]
+[ext_resource type="AudioStream" uid="uid://4155txr1wtcp" path="res://assets/hitHurt.wav" id="4_kbc78"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_232n7"]
+radius = 23.7111
+
+[node name="Target" type="Area2D"]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("2_4v3nu")
+
+[node name="TargetRed" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_5iglr")
+
+[node name="TargetGold" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_sobc5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_232n7")
+
+[node name="MageHitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kbc78")
+volume_db = 8.0
+
+[node name="TargetHitSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_86lbo")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
