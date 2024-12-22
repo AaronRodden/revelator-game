@@ -86,6 +86,9 @@ func _ready():
 			"a":  # TODO: Changing these to get ready for PS4 only switch
 				texture_path = circle_path
 				scale_variable = 1.5
+			"a":
+				texture_path = circle_path
+				scale_variable = 1.5
 			"b":
 				texture_path = cross_path
 				scale_variable = 1.5

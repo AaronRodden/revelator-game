@@ -13,6 +13,9 @@ var LIGHT_FIREBALL_COUNT = 3
 var MEDIUM_FIREBALL_COUNT = 3
 
 var spell_queue = []
+var negative_edge_spell_queue = []
+
+signal release_spell_signal
 
 # ** TODO ** Much of the P1 v P2 logic is baked into this script as well as Rmage / Bage.
 # When a refactor comes this script will need to be looked at as well
@@ -44,10 +47,11 @@ func new_spell(spell_type, caster):
 			spell_queue.append(new_spell)
 		"special_move":
 			if caster == "Rmage": # Fireball mines special move
-				new_spell = Landmine.instantiate()
-				new_spell.set_caster(caster)
-				add_child(new_spell)
-				spell_queue.append(new_spell)
+				for i in range(0, 3):
+					new_spell = Landmine.instantiate()
+					new_spell.set_caster(caster)
+					add_child(new_spell)
+					spell_queue.append(new_spell)
 			elif caster == "Bmage": # Re-direction special move
 				new_spell = HomingArrow.instantiate()
 				new_spell.set_caster(caster)
@@ -90,7 +94,11 @@ func cast_spell(lookvector, controllerangle, caster):
 				spell.reparent(get_parent().get_parent())
 		"special_move":
 			if caster == "Rmage": # Fireball mines special move
-				for spell in spell_queue:
+				for i in spell_queue.size():
+					var spell = spell_queue[i]
+					if i == 1:
+						lookvector = lookvector * -1
+					negative_edge_spell_queue.append(spell)
 					spell.cast(lookvector)
 					spell.reparent(get_parent().get_parent())
 			elif caster == "Bmage": # Re-direction special move
@@ -101,6 +109,11 @@ func cast_spell(lookvector, controllerangle, caster):
 				return # Allows for re-direction
 	spell_queue = []
 	curr_spell = null
+	
+func release_spell(lookvector, controllerangle, caster):
+	if caster == "Rmage":
+		for spell in negative_edge_spell_queue:
+			spell.negative_edge_release()
 
 # The auto attack should bypass the spell queue and hense have its own function
 func cast_auto_attack(lookvector, controllerangle, caster):
