@@ -36,8 +36,6 @@ func set_caster(current_caster):
 
 func _on_body_entered(_body):
 	emit_signal("hit")
-	$HitSound.play()
 
 func _on_area_entered(_area):
 	emit_signal("hit")
-	$HitSound.play()

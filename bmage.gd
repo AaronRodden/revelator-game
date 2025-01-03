@@ -11,7 +11,7 @@ var velocity
 var spell_book_position
 var curr_spell
 
-@export var controller_lock = false
+@export var controller_lock = true
 @export var speed = 275
 var lookvector = Vector2.ZERO
 var input_buffer = []
@@ -25,7 +25,9 @@ var auto_attack_flag = true
 var rmage_moves = {
 	"light_fireball": ["down", "right", "square"], 
 	"medium_fireball": ["down", "left", "triangle"], 
+	"interim_dp_input": ["right", "down", "right"],  # TODO: This is kinda hacky
 	"heavy_fireball": ["right", "down", "right", "cross"], 
+	"interim_half_circle_input": ["left", "down", "right"],  # TODO: This is kinda hacky
 	"special_move": ["left", "down", "right", "circle"], 
 	"ice_punch": ["right", "down", "right", "square"]
 	}
@@ -37,7 +39,7 @@ var rmage_moves = {
 # D-Pad: Spell Casting Directional Inputs
 # Face Buttons: Spell Casting Button Inputs
 # R1: Auto-attack
-# R2: Shoot Preped Spell
+# R3: Shoot Preped Spell
 # L1: Dodge
 # L2: <>
 
@@ -51,7 +53,6 @@ func _ready():
 	auto_attack_timer.connect("timeout", _on_auto_attack_timeout, 0)
 	auto_attack_timer.wait_time = Global.AUTO_ATTACK_TIMEOUT
 	add_child(auto_attack_timer)
-
 
 func _process(delta):
 	
@@ -103,11 +104,14 @@ func _process(delta):
 			$SpellBook.get_children()[0].rotation = controllerangle
 	
 	# Player Casting
-	if Input.is_action_just_pressed("shoot_spell"):
+	if Input.is_action_just_pressed("shoot_spell") or Input.is_action_just_pressed("shoot_spell_alt"):
 		emit_signal("spell_cast")
 		$SpellBook.cast_spell(lookvector, controllerangle,  self.name)
 		input_buffer = []
 		input_count = 0
+		
+	if Input.is_action_just_released("shoot_spell") or Input.is_action_just_released("shoot_spell_alt"):
+		$SpellBook.release_spell(lookvector, controllerangle,  self.name)
 	
 	# Player Auto-Attacking	
 	if Input.is_action_just_pressed("auto_attack"):
@@ -153,11 +157,28 @@ func _process(delta):
 			emit_signal("spell_input", "square")
 			input_count += 1
 	
-	for move in rmage_moves:
-		if rmage_moves[move] == input_buffer: 
+	# Insta-clear when you mess up inputs
+	if input_buffer.size() >= 3:
+		var spell_match = false
+		for move in rmage_moves:
+			if rmage_moves[move] == input_buffer:
+				if move.contains("interim"):
+					spell_match = true
+					break
+				input_buffer = []
+				emit_signal("spell_completed")  # TODO: Add load sound FX
+				$SpellBook.new_spell(move, self.name)
+				$CorrectSpell.play()
+				spell_match = true
+		if spell_match == false:
 			input_buffer = []
-			emit_signal("spell_completed")  # TODO: Add load sound FX
-			$SpellBook.new_spell(move, self.name)
+			input_count = 0
+			$SpellBook.new_spell(null, self.name)
+			$SpellBook.cast_spell(null, null,  self.name)
+			$WrongSpell.play()
+			emit_signal("spell_cast")
+		spell_match = false
+			
 	
 func start(pos):
 	position = pos
@@ -171,12 +192,19 @@ func start(pos):
 
 func _physics_process(_delta):
 	move_and_collide(Vector2(0, 0)) # Move down 1 pixel per physics frame
+	
+	
+func turn_off_hurtbox():
+	$RmageHurtbox.get_child(0).set_deferred("disabled", true)
 
 # TODO: Add hit sound FX
 func _on_hurtbox_area_entered(area):
-	if area.caster != self.name and area.caster != null:
+	## TODO: Tech debt, can we avoid cases for every hurtbox interaction?
+	if area.caster == "target":
+		return
+	elif area.caster != self.name and area.caster != null:
 		hide()  # Player disappears after being hit.
 		hit.emit()
 		$HitSound.play()
 		$CollisionShape2D.set_deferred("disabled", true)
-		$RmageHurtbox.get_child(0).set_deferred("disabled", true)
+		turn_off_hurtbox()

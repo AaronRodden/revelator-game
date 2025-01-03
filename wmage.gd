@@ -11,7 +11,7 @@ var velocity
 var spell_book_position
 var curr_spell
 
-@export var controller_lock = false
+@export var controller_lock = true
 @export var speed = 275
 var lookvector = Vector2.ZERO
 var input_buffer = []
@@ -25,7 +25,9 @@ var auto_attack_flag = true
 var bmage_moves = {
 	"light_fireball": ["down", "right", "y"], 
 	"medium_fireball": ["down", "left", "x"], 
+	"interim_dp_input": ["right", "down", "right"],  # TODO: This is kinda hacky
 	"heavy_fireball": ["right", "down", "right", "b"], 
+	"interim_half_circle_input": ["left", "down", "right"],  # TODO: This is kinda hacky
 	"special_move": ["left", "down", "right", "a"], 
 	"ice_punch": ["right", "down", "right", "y"]
 	}
@@ -44,7 +46,7 @@ var bmage_moves = {
 # D-Pad: Spell Casting Directional Inputs
 # Face Buttons: Spell Casting Button Inputs
 # R1: Auto-attack
-# R2: Shoot Preped Spell
+# R3: Shoot Preped Spell
 # L1: Dodge
 # L2: <>
 
@@ -58,8 +60,7 @@ func _ready():
 	auto_attack_timer.connect("timeout", _on_auto_attack_timeout, 0)
 	auto_attack_timer.wait_time = Global.AUTO_ATTACK_TIMEOUT
 	add_child(auto_attack_timer)
-
-
+	
 func _process(delta):
 	
 	if controller_lock:
@@ -102,7 +103,7 @@ func _process(delta):
 	var deadzone = 0.5
 	var controllerangle = Vector2.ZERO.angle()
 	var xAxisRL = (Input.get_action_strength("right_aim_p2") - Input.get_action_strength("left_aim_p2"))
-	var yAxisUD = (Input.get_action_strength("down_aim_p2") - Input.	get_action_strength("up_aim_p2"))
+	var yAxisUD = (Input.get_action_strength("down_aim_p2") - Input.get_action_strength("up_aim_p2"))
 
 	if abs(xAxisRL) > deadzone || abs(yAxisUD) > deadzone:
 		controllerangle = Vector2(xAxisRL, yAxisUD).angle()
@@ -110,7 +111,7 @@ func _process(delta):
 			$SpellBook.get_children()[0].rotation = controllerangle
 	
 	# Player Casting
-	if Input.is_action_just_pressed("shoot_spell_p2"):
+	if Input.is_action_just_pressed("shoot_spell_p2") or Input.is_action_just_pressed("shoot_spell_alt_p2"):
 		emit_signal("spell_cast")
 		$SpellBook.cast_spell(lookvector, controllerangle, self.name)
 		input_buffer = []
@@ -144,28 +145,43 @@ func _process(delta):
 			emit_signal("spell_input", "up_p2")
 			input_count += 1
 			
-		if Input.is_action_just_released("a"):
+		if Input.is_action_just_released("circle_p2"):
 			input_buffer.push_back("a")
 			emit_signal("spell_input", "a")
 			input_count += 1
-		if Input.is_action_just_released("b"):
+		if Input.is_action_just_released("cross_p2"):
 			input_buffer.push_back("b")
 			emit_signal("spell_input", "b")
 			input_count += 1
-		if Input.is_action_just_released("x"):
+		if Input.is_action_just_released("triangle_p2"):
 			input_buffer.push_back("x")
 			emit_signal("spell_input", "x")
 			input_count += 1
-		if Input.is_action_just_released("y"):
+		if Input.is_action_just_released("square_p2"):
 			input_buffer.push_back("y")
 			emit_signal("spell_input", "y")
 			input_count += 1
-	
-	for move in bmage_moves:
-		if bmage_moves[move] == input_buffer: 
+			
+	# Insta-clear when you mess up inputs
+	if input_buffer.size() >= 3:
+		var spell_match = false
+		for move in bmage_moves:
+			if bmage_moves[move] == input_buffer:
+				if move.contains("interim"):
+					spell_match = true
+					break
+				input_buffer = []
+				emit_signal("spell_completed")  # TODO: Add load sound FX
+				$SpellBook.new_spell(move, self.name)
+				spell_match = true
+		if spell_match == false:
 			input_buffer = []
-			emit_signal("spell_completed")
-			$SpellBook.new_spell(move, self.name)
+			input_count = 0
+			$SpellBook.new_spell(null, self.name)
+			$SpellBook.cast_spell(null, null,  self.name)
+			emit_signal("spell_cast")
+		spell_match = false
+	
 	
 func start(pos):
 	position = pos
@@ -180,10 +196,16 @@ func start(pos):
 func _physics_process(_delta):
 	move_and_collide(Vector2(0, 0)) # Move down 1 pixel per physics frame
 
+func turn_off_hurtbox():
+	$WmageHurtbox.get_child(0).set_deferred("disabled", true)
+
 func _on_hurtbox_area_entered(area):
-	if area.caster != self.name and area.caster != null:
+	## TODO: Tech debt, can we avoid cases for every hurtbox interaction?
+	if area.caster == "target":
+		return
+	elif area.caster != self.name and area.caster != null:
 		hide()  # Player disappears after being hit.
 		hit.emit()
 		$HitSound.play()
 		$CollisionShape2D.set_deferred("disabled", true)
-		$WmageHurtbox.get_child(0).set_deferred("disabled", true)
+		turn_off_hurtbox()

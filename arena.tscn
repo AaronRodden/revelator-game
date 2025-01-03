@@ -1,7 +1,7 @@
-[gd_scene load_steps=34 format=3 uid="uid://b2pgalkm1uevl"]
+[gd_scene load_steps=35 format=3 uid="uid://b2pgalkm1uevl"]
 
 [ext_resource type="Script" path="res://arena.gd" id="1_2nt1r"]
-[ext_resource type="Texture2D" uid="uid://cn7vfuba5y4i2" path="res://assets/grass_15.png" id="2_juy2i"]
+[ext_resource type="Texture2D" uid="uid://c664dskbudipq" path="res://assets/grass_15_cropped.png" id="2_7letu"]
 [ext_resource type="Texture2D" uid="uid://bxrut8pfwmnq2" path="res://assets/arena_tiles.png" id="2_syq8k"]
 [ext_resource type="Texture2D" uid="uid://dqwogbbh75n45" path="res://assets/wall_tile.png" id="3_hny7g"]
 [ext_resource type="Texture2D" uid="uid://cbdssnoi1bbl2" path="res://assets/wizard_fan_sheet_purple.png" id="6_k4x3p"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cym1d87lis1ge" path="res://assets/wizard_fan_sheet_orange.png" id="7_h45s2"]
 [ext_resource type="Texture2D" uid="uid://dk3o0t87hdiir" path="res://assets/wizard_fan_green_sheet.png" id="8_0djvd"]
 [ext_resource type="Texture2D" uid="uid://ca4167ipfmm1s" path="res://assets/wizard_fan_sheet_black.png" id="9_dtwlv"]
+[ext_resource type="PackedScene" uid="uid://c8tt5qgwkjlb" path="res://target_spawner.tscn" id="10_jnrnx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tyiyi"]
 size = Vector2(26, 456)
@@ -173,9 +174,9 @@ collision_mask = 0
 script = ExtResource("1_2nt1r")
 
 [node name="Grass15" type="Sprite2D" parent="."]
-position = Vector2(748.006, 423.346)
-scale = Vector2(2.33174, 1.32296)
-texture = ExtResource("2_juy2i")
+position = Vector2(747.082, 426.459)
+scale = Vector2(1.54454, 1.37346)
+texture = ExtResource("2_7letu")
 
 [node name="arena_sprite" type="Sprite2D" parent="."]
 position = Vector2(748.03, 482.764)
@@ -372,3 +373,40 @@ scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_3nvbw")
 animation = &"watch"
 autoplay = "watch"
+
+[node name="TargetSpawner1" parent="." instance=ExtResource("10_jnrnx")]
+position = Vector2(80, 250)
+
+[node name="TargetSpawner2" parent="." instance=ExtResource("10_jnrnx")]
+position = Vector2(80, 450)
+
+[node name="TargetSpawner3" parent="." instance=ExtResource("10_jnrnx")]
+position = Vector2(80, 650)
+
+[node name="TargetSpawner4" parent="." instance=ExtResource("10_jnrnx")]
+position = Vector2(620, 900)
+rotation = -1.5708
+
+[node name="TargetSpawner5" parent="." instance=ExtResource("10_jnrnx")]
+position = Vector2(820, 900)
+rotation = -1.5708
+
+[node name="TargetSpawner6" parent="." instance=ExtResource("10_jnrnx")]
+position = Vector2(1480, 650)
+rotation = 3.14159
+
+[node name="TargetSpawner7" parent="." instance=ExtResource("10_jnrnx")]
+position = Vector2(1480, 450)
+rotation = 3.14159
+
+[node name="TargetSpawner8" parent="." instance=ExtResource("10_jnrnx")]
+position = Vector2(1480, 250)
+rotation = 3.14159
+
+[node name="TargetSpawner9" parent="." instance=ExtResource("10_jnrnx")]
+position = Vector2(820, -50)
+rotation = 1.5708
+
+[node name="TargetSpawner10" parent="." instance=ExtResource("10_jnrnx")]
+position = Vector2(620, -50)
+rotation = 1.5708
