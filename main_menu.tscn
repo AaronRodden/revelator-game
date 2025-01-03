@@ -123,28 +123,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4gj3f"]
-atlas = ExtResource("13_qdy7m")
-region = Rect2(0, 0, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6e3mt"]
-atlas = ExtResource("13_qdy7m")
-region = Rect2(48, 0, 48, 48)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_xc2tb"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4gj3f")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6e3mt")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_0skm0"]
 atlas = ExtResource("14_8ug8j")
 region = Rect2(0, 0, 48, 48)
@@ -168,6 +146,28 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ajy56")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gj3f"]
+atlas = ExtResource("13_qdy7m")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e3mt"]
+atlas = ExtResource("13_qdy7m")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xc2tb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gj3f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e3mt")
 }],
 "loop": true,
 "name": &"default",
@@ -289,17 +289,19 @@ theme_override_colors/font_focus_color = Color(0.882353, 0.87451, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "Training"
 
+[node name="BreakTheTargetsButton" type="Button" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.882353, 0.87451, 0, 1)
+theme_override_colors/font_focus_color = Color(0.882353, 0.87451, 0, 1)
+theme_override_font_sizes/font_size = 64
+text = "Break The Targets!"
 
 [node name="QuitButton" type="Button" parent="HBoxContainer/VBoxContainer"]
-
-[node name="BreakTheTargetsButton" type="Button" parent="HBoxContainer/VBoxContainer"]
-
 layout_mode = 2
 theme_override_colors/font_hover_color = Color(0.882353, 0.87451, 0, 1)
 theme_override_colors/font_focus_color = Color(0.882353, 0.87451, 0, 1)
 theme_override_font_sizes/font_size = 64
 text = "Quit"
-text = "Break The Targets!"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
@@ -316,25 +318,24 @@ texture = ExtResource("9_x17cj")
 [node name="MainMenuMusic" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_w2gpk")
 
-[node name="HomingArrow" type="AnimatedSprite2D" parent="."]
-position = Vector2(1066.67, 1169.73)
-scale = Vector2(5.33033, 5.33033)
-sprite_frames = SubResource("SpriteFrames_xc2tb")
-
-[node name="LandmineSprite" type="AnimatedSprite2D" parent="HomingArrow"]
-position = Vector2(-144.676, -1.04225)
-scale = Vector2(0.523768, 0.523768)
+[node name="LandmineSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(64.7471, 1176.89)
+scale = Vector2(2.79186, 2.79186)
 sprite_frames = SubResource("SpriteFrames_rmje3")
 autoplay = "default"
 
+[node name="HomingArrow" type="AnimatedSprite2D" parent="."]
+position = Vector2(1284.75, 1169.83)
+scale = Vector2(5.33033, 5.33033)
+sprite_frames = SubResource("SpriteFrames_xc2tb")
+
 [node name="LaserCharge" type="AnimatedSprite2D" parent="."]
-position = Vector2(681.081, 1164.18)
+position = Vector2(684.747, 1209.83)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_cooxa")
 autoplay = "default"
 
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/VersusButton" to="." method="_on_versus_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/TrainingButton" to="." method="_on_training_button_pressed"]
-
-[connection signal="pressed" from="HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/VBoxContainer/BreakTheTargetsButton" to="." method="_on_break_the_targets_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

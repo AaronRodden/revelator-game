@@ -111,7 +111,7 @@ func _process(delta):
 			$SpellBook.get_children()[0].rotation = controllerangle
 	
 	# Player Casting
-	if Input.is_action_just_pressed("shoot_spell_p2"):
+	if Input.is_action_just_pressed("shoot_spell_p2") or Input.is_action_just_pressed("shoot_spell_alt_p2"):
 		emit_signal("spell_cast")
 		$SpellBook.cast_spell(lookvector, controllerangle, self.name)
 		input_buffer = []

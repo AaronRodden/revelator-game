@@ -104,13 +104,13 @@ func _process(delta):
 			$SpellBook.get_children()[0].rotation = controllerangle
 	
 	# Player Casting
-	if Input.is_action_just_pressed("shoot_spell"):
+	if Input.is_action_just_pressed("shoot_spell") or Input.is_action_just_pressed("shoot_spell_alt"):
 		emit_signal("spell_cast")
 		$SpellBook.cast_spell(lookvector, controllerangle,  self.name)
 		input_buffer = []
 		input_count = 0
 		
-	if Input.is_action_just_released("shoot_spell"):
+	if Input.is_action_just_released("shoot_spell") or Input.is_action_just_released("shoot_spell_alt"):
 		$SpellBook.release_spell(lookvector, controllerangle,  self.name)
 	
 	# Player Auto-Attacking	
